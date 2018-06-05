@@ -56,7 +56,7 @@ productCartDesc VARCHAR(250),
 productShortDesc VARCHAR(1000),
 productThumb VARCHAR(100),
 productImage VARCHAR(100),
-productCategoryID INT REFERENCES productcategories(categoryID),
+productCategory VARCHAR(20),
 productUpdateDate TIMESTAMP,
 productStock FLOAT
 );
@@ -83,10 +83,10 @@ optionName INT REFERENCES optiongroups(optionGroupID)
 );
 
 
-CREATE TABLE IF NOT EXISTS productoptions(
-productOptionID INT,
-optionID INT REFERENCES optiontable(optionID),
-productID INT REFERENCES products(productID),
-optionGroupID INT,
-optionPriceIncrement FLOAT
-);
+-- CREATE TABLE IF NOT EXISTS productoptions(
+-- productOptionID INT,
+-- optionID INT REFERENCES optiontable(optionID),
+-- productID INT REFERENCES products(productID),
+-- optionGroupID INT,
+-- optionPriceIncrement FLOAT
+-- );
