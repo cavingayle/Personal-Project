@@ -1,4 +1,4 @@
-const cloudinary = require('cloudinary');
+const cloudinary = require( 'cloudinary' );
 module.exports ={
 
     imageUpload: ( req, res ) => {
@@ -14,7 +14,7 @@ module.exports ={
         res.json( payload );
     
     },
-  createProduct:( req, res, next ) => {
+    createProduct:( req, res, next ) => {
         const dbInstance = req.app.get( 'db' )
         const { productname, productprice, productcartdesc, productshortdesc, uploadUrl, productstock, productsize, productcolor, productcategory } = req.body;
         dbInstance.createProduct( productname, productprice, productcartdesc, productshortdesc, uploadUrl, productstock, productsize, productcolor, productcategory )
@@ -25,7 +25,7 @@ module.exports ={
     
     getProducts:( req, res, next ) => {
         const dbInstance = req.app.get( 'db' )
-        dbInstance.getProducts().then( products =>res.status( 200 ).send( products ))
+        dbInstance.all_products().then( products =>res.status( 200 ).send( products ))
         .catch( error =>console.log( error ) )
     },
 

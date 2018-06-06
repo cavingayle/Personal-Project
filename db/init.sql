@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS cart(
 cartID serial PRIMARY KEY,
 cartTotal FLOAT,
 cartItems TEXT
-)
+);
+
 CREATE TABLE IF NOT EXISTS users(
 userID serial PRIMARY KEY,
 userName VARCHAR(100),

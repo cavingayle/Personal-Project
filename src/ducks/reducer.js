@@ -37,7 +37,7 @@ export const actions = {
     getCart: () => {
         return( dispatch, getState ) => {
             return(
-                axios.get( '/api/user' ).then( res => {
+                axios.get( '/api/user-data' ).then( res => {
                     dispatch({
                         type: GET_CART,
                         payload: [res.data.cart, res.data.cart[0] ? res.data.cart.map( e=> e.total ).reduce( ( a, b ) => a + b ) : 0]
@@ -108,12 +108,28 @@ export const actions = {
                 })
             })
         }
-    }
+    },
+
+    decrementProduct: ( product ) => {
+        return ( dispatch, getState ) => {
+          let cart = [ ...getState().cart ]
+          let index = cart.findIndex(  e => e.id === product )
+            cart[index].qty -=1
+            cart[index].total = cart[index].qty*cart[index].price
+    
+          axios.post('/api/cartToSession', cart ).then( ()=> {
+            return dispatch({
+              type: DECREMENT_QTY,
+              payload: cart
+            })
+          })
+        }
+      }
 
 }
 
 function reducer( state=INITIAL_STATE, action ){
-    switch( action.type ){
+    switch( action.type ) {
 
         case ADD_TO_CART:
         return{ ...state, cart: action.payload }
@@ -150,12 +166,12 @@ function reducer( state=INITIAL_STATE, action ){
     }
 }
 
-// export function addToCart( product ) {
-//     return {
-//         type: ADD_TO_CART,
-//         payload: product
-//     };
-// }
+export function addToCart( product ) {
+    return {
+        type: ADD_TO_CART,
+        payload: product
+    };
+}
 
 // export function removeFromCart( product ) {
 //     return {

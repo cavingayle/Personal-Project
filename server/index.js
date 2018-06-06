@@ -21,6 +21,9 @@ app.use(
     }
   })
 )
+
+app.use( sessionController )
+
 massive( process.env.CONNECTION_STRING )
   .then( db => {
     app.set( "db", db )
@@ -29,26 +32,38 @@ massive( process.env.CONNECTION_STRING )
 
 //***********PRODUCT Endpoints *************/
 app.get("/api/category", productController.getCategoryData)
-app.get("/api/shop", productController.getProducts) 
+app.get("/api/shop", productController.getProducts)
+app.get("/api/product/:id", productController.getProduct) 
 app.delete("/api/shop/:id", productController.deleteProduct) 
 app.put("/api/shop/:id", productController.updateProduct) 
-app.post("/api/shop", productController.createProduct)
+app.post("/api/createProduct", productController.createProduct)
+app.get("/api/itemOptions", productController.itemOptions) 
+app.get("/api/optionByProductID/:id",productController.optionByProductID)
 
-//************User Endpoints ***************************/
-// app.get('api/register', userController.createUser)
-app.get('/api/users', userController.getUsers) //for admin page to get all users 
-app.get('/api/user/:id', userController.getUserByID) 
-app.get('/api/userdetails', userController.userdetailsByID) 
-app.get('/api/orders', userController.orderByUserId)
+//*************USER login/logout Endpoints**************/
+// app.get("/auth/callback", authCtrl.auth) 
+// app.post("/api/logout", authCtrl.logout)
+app.get("/api/user-data", userController.getUser)
+app.post("/api/cartToSession", userController.cartToSession)
+app.post('/api/sessionLocation', userController.sessionLocation)
+app.get('/api/cartToRedux', userController.cartToRedux)
+app.post('/api/updateuserProfile',userController.updateUserProfile)
 
-//***************ORDER Endpoints *********************/
-app.post('/api/lineitem/', orderController.addToLineItem) 
+// //************User Endpoints ***************************/
+// // app.get('api/register', userController.createUser)
+// app.get('/api/users', userController.getUsers) //for admin page to get all users 
+// app.get('/api/user/:id', userController.getUserByID) 
+// app.get('/api/userdetails', userController.userdetailsByID) 
+// app.get('/api/orders', userController.orderByUserId)
 
-//*************Cloudinary Image uploader  */
-app.get('/api/upload', productController.imageUpload);
+// //***************ORDER Endpoints *********************/
+// app.post('/api/lineitem/', orderController.addToLineItem) 
 
-//*************Admin Endpoints************ */
-app.get('/api/allOrders', orderController.allOrdersAdmin)
+// //*************Cloudinary Image uploader  */
+// app.get('/api/upload', productController.imageUpload);
+
+// //*************Admin Endpoints************ */
+// app.get('/api/allOrders', orderController.allOrdersAdmin)
 
 
 const port = 9000

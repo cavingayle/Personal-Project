@@ -1,0 +1,35 @@
+.Nav {
+    background-color: goldenrod;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 80% 15% 0% 10% 10%; 
+    /* justify-items: end; */
+    align-items: center
+}
+
+h1 {
+    font-size: 1.5em;
+    font-family: cursive;
+    text-align: center;
+}
+
+.products {
+    text-decoration: none;
+}
+
+.cart-icon {
+    display: inline-block;
+    text-align: center;
+}
+
+.cart-icon > div {
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.6);
+    border-radius: 20px;
+    margin: 0 0 0 7px;
+    padding: 5px;
+}
+
