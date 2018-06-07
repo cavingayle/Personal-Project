@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FaTrash from "react-icons/lib/fa/trash";
 import { getProducts, actions } from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -28,10 +27,11 @@ class Cart extends Component {
     
     
       render() {
-        console.log(window.location.pathname)
-        console.log(this.props.total);
+        // console.log(window.location.pathname)
+        // console.log(this.props.total);
+        // console.log(this.props.cart)
         const total = this.props.total
-        console.log(total)
+        // console.log(total)
           const cart = this.props.cart[0] ? this.props.cart.map( ( e, i ) => {
             return <div key={ i }>
             <div className="cartitem">
@@ -53,7 +53,7 @@ class Cart extends Component {
                     </div>
                     <br />
     
-                  <span onClick={ () => this.delete( e.id )}><FaTrash /> </span>
+                  <span onClick={ () => this.delete( e.id )}> </span>
                   <p><b> Total: { e.total.toFixed( 2 ) }</b> </p>
               </div>
               </div>
@@ -63,11 +63,11 @@ class Cart extends Component {
             return (
                 <div>
                     { cart }
-                    <div><b>Order SubTotal: { this.props.cart[0] ? total.toFixed(2):0 } </b></div>
+                    <div><b>Order SubTotal: ${ this.props.cart[0] ? total.toFixed(2):0 } </b></div>
     
                     <br />
                      
-                    { window.location.pathname==='/checkout' ? null :  <Link to="/checkout">     <Button variant="raised" color="primary"> Check Out </Button></Link> }
+                    { window.location.pathname==='/checkout' ? null :  <Link to="/checkout">     <Button fullWidth={true} variant="raised" color="secondary"> Check Out </Button></Link> }
                     </div>
             )
         }

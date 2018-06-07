@@ -1,4 +1,4 @@
-update products
-set productstock = 0
-where productID = $1
+UPDATE products
+SET productstock = 0
+WHERE productID = $1
 returning *;

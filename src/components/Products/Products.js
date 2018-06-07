@@ -3,20 +3,19 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { getProducts, addToCart } from '../../ducks/reducer';
+import './Products.css';
+import { Select } from 'antd';
 
 class Products extends Component {
-    constructor(props){
-        super(props)
+    constructor( props ){
+        super( props )
       }
-      componentDidMount(props){
-        axios.get('/api/shop')
+      componentDidMount( props ){
+        axios.get( '/api/shop' )
           .then( products => {
-            this.props.getProducts(products.data)
-            // console.log('--------products', this.props.products )
-          })
-          .catch( err => {
-            console.log( err )
-          })
+            this.props.getProducts( products.data )
+            console.log( '--------products', this.props.products )
+          }).catch( err => { console.log( err ) })
       }
     
         render() {
@@ -26,19 +25,32 @@ class Products extends Component {
           // console.log('---------productid', this.props.cart)
           // console.log('---------cart.productID', this.props.cart.findIndex(e => e.id))
           // console.log('---------this.props.cart-------', this.props.cart)
-          const products = this.props.products ? this.props.products.map( (e, i) => {
+          const { Option, OptGroup } = Select;
+          const products = this.props.products ? this.props.products.map( ( e, i ) => {
             // console.log('----------e', e);
-            // console.log('----------this.props.cart', this.props.cart);
-            return <div key={i} className='item'>
+            console.log('----------this.props.cart', this.props.cart);
+            return <div key={ i } className='item'>
             <div>
-                    <h1>{e.productname}</h1>
-                    <h2>{e.productshortdesc} </h2>
-                    <img src ={e.productimage} alt={e.productname}  />
-                    <h3> {e.productcartdesc} </h3>
-                    <span>{e.productprice}</span>
-    
-                    <p>{e.productstock <=0 ? 'out-of-stock' : e.productstock >0 && e.productstock <= 10 ? 'limited-stock' : 'in-stock'}</p>
-                    <button onClick={() => this.props.addToCart({ name: e.productname, id:e.productid, qty: 1, image: e.productimage, price: e.productprice })}>Buy it!</button>
+                    <h1>{ e.productname }</h1>
+                    <h2> { e.productcartdesc } </h2>
+                    <img src ={ e.productimage } alt={e.productname}  />
+                    <h3>{ e.productshortdesc } </h3>
+                    <span>${ e.productprice }</span>
+                    <Select
+                    defaultValue="Select Chain Size"
+                    style={{ width: 200 }}>
+               
+                      <OptGroup label="Sizes">
+                        <Option value="16">16 inch</Option>
+                        <Option value="18">18 inch</Option>
+                        <Option value="20">20 inch</Option>
+                        <Option value="22">22 inch</Option>
+                        <Option value="24">24 inch</Option>
+                        <Option value={true}>Keychain</Option>
+                      </OptGroup>
+                    </Select> 
+                    <p>{e.productstock <=0 ? 'out-of-stock' : e.productstock >0 && e.productstock <= 10 ? 'limited-stock!' : 'in-stock'}</p>
+                    <button onClick={ () => this.props.addToCart( { name: e.productname, id: e.productid, qty: 1, image: e.productimage, price: e.productprice } ) }>Add to Cart</button>
             </div>
                    </div>
           }): 'nothing to display'
@@ -47,7 +59,7 @@ class Products extends Component {
               <div>
                 <h1>Products</h1>
                 <div className='container'>
-                {products}
+                { products }
                 </div>
               </div>
     
@@ -61,4 +73,4 @@ class Products extends Component {
         cart: state.cart
       }
     }
-    export default connect(mapStateToProps, {getProducts, addToCart})(Products)
+    export default connect( mapStateToProps, { getProducts, addToCart })( Products )

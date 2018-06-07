@@ -31,14 +31,15 @@ massive( process.env.CONNECTION_STRING )
   .catch( err => console.log( "error", err ))
 
 //***********PRODUCT Endpoints *************/
-app.get("/api/category", productController.getCategoryData)
+// app.get("/api/category", productController.getCategoryData)
 app.get("/api/shop", productController.getProducts)
-app.get("/api/product/:id", productController.getProduct) 
-app.delete("/api/shop/:id", productController.deleteProduct) 
-app.put("/api/shop/:id", productController.updateProduct) 
-app.post("/api/createProduct", productController.createProduct)
-app.get("/api/itemOptions", productController.itemOptions) 
-app.get("/api/optionByProductID/:id",productController.optionByProductID)
+// app.get("/api/product/:id", productController.getProduct) 
+// app.delete("/api/shop/:id", productController.deleteProduct) 
+// app.put("/api/shop/:id", productController.updateProduct) 
+// app.post("/api/createProduct", productController.createProduct)
+// app.get("/api/itemOptions", productController.itemOptions) 
+// app.get("/api/optionByProductID/:id", productController.optionByProductID)
+app.get("/api/test", productController.getNecklaceSizes)
 
 //*************USER login/logout Endpoints**************/
 // app.get("/auth/callback", authCtrl.auth) 
@@ -47,7 +48,7 @@ app.get("/api/user-data", userController.getUser)
 app.post("/api/cartToSession", userController.cartToSession)
 app.post('/api/sessionLocation', userController.sessionLocation)
 app.get('/api/cartToRedux', userController.cartToRedux)
-app.post('/api/updateuserProfile',userController.updateUserProfile)
+// app.post('/api/updateuserProfile', userController.updateUserProfile)
 
 // //************User Endpoints ***************************/
 // // app.get('api/register', userController.createUser)
@@ -66,7 +67,7 @@ app.post('/api/updateuserProfile',userController.updateUserProfile)
 // app.get('/api/allOrders', orderController.allOrdersAdmin)
 
 
-const port = 9000
+const port = 9001
 app.listen( port, () => {
   console.log( `This server is over ${ port }!!!` )
 })
