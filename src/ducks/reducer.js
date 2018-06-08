@@ -36,31 +36,39 @@ export const actions = {
 
     getCart: () => {
         return( dispatch, getState ) => {
+            // console.log([...getState().cart])
+            if(getState().cart[0]){
+                let cart = [ ...getState().cart ]
+                let total = cart.reduce( ( a, b ) => a + b.price * b.qty, 0 )
+                // console.log('reducer total', total)
+             
             return(
                 axios.get( '/api/user-data' ).then( res => {
                     dispatch({
                         type: GET_CART,
-                        payload: [res.data.cart, res.data.cart[0] ? res.data.cart.map( e=> e.total ).reduce( ( a, b ) => a + b ) : 0]
+                        payload: total
                     })}).catch( err => console.error( err ))    
             )
         }
-    },
-
-    cartTotal: () => {
-        return ( dispatch, getState ) => {
-          let cart = [ ...getState().cart ]
-          let total = cart[0] ?  cart.map( e => e.total ).reduce( (a, b) => a + b ) : 0
-    
-          return dispatch({
-            type: CART_TOTAL,
-            payload: total
-          })
         }
     },
+
+    // cartTotal: () => {
+    //     return ( dispatch, getState ) => {
+    //       let cart = [ ...getState().cart ]
+    //       let total = cart[0] ?  cart.map( e => e.total ).reduce( (a, b) => a + b ) : 0
+    
+    //       return dispatch({
+    //         type: CART_TOTAL,
+    //         payload: total
+    //       })
+    //     }
+    // },
 
     addToCart: ( product ) => {
         return ( dispatch, getState ) => {
           let cart = [ ...getState().cart ]
+          
         //   console.log(cart)
           let index = cart.findIndex( e => e.id === product.id )
         //   console.log('the index value is', index)
@@ -70,6 +78,8 @@ export const actions = {
           } else {
             cart[cart.length] = product
           }
+          console.log('hit add to cart',cart)
+       
           axios.post( '/api/cartToSession', cart ).then( ()=> {
             return dispatch({
               type: ADD_TO_CART,
@@ -98,7 +108,7 @@ export const actions = {
         return ( dispatch, getState ) => {
             let cart = [ ...getState().cart ]
             let index = cart.findIndex( e => e.id === product )
-            cart[index].qty -= 1
+            cart[index].qty += 1
             cart[index].total = cart[index].qty*cart[index].price
 
             axios.post('/api/cartToSession', cart ).then( () => {
@@ -155,30 +165,30 @@ function reducer( state=INITIAL_STATE, action ){
         case DECREMENT_QTY:
         return { ...state, cart: action.payload }
 
-        case CART_TOTAL:
+        case GET_CART:
         return { ...state, cart_total: action.payload}
     
-        case GET_CART:
-        return { ...state, cart: action.payload[0], cart_total: action.payload[1]}
+        // case GET_CART:
+        // return { ...state, cart: action.payload[0], cart_total: action.payload[1]}
 
         default:
             return state
     }
 }
 
-export function addToCart( product ) {
-    return {
-        type: ADD_TO_CART,
-        payload: product
-    };
-}
+// export function addToCart( product ) {
+//     return {
+//         type: ADD_TO_CART,
+//         payload: product
+//     };
+// }
 
-export function removeFromCart( product ) {
-    return {
-        type: REMOVE_FROM_CART,
-        payload: product
-    };
-}
+// export function removeFromCart( product ) {
+//     return {
+//         type: REMOVE_FROM_CART,
+//         payload: product
+//     };
+// }
 
 export function getProducts( products ) {
     return {

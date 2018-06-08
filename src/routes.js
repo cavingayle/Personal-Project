@@ -4,6 +4,7 @@ import Home from './components/Home/Home';
 import Products from './components/Products/Products';
 import Product from './components/Product/Product';
 import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout/Checkout';
 import Admin from './components/Admin/Admin';
 
 
@@ -14,6 +15,7 @@ const routes =
      <Route path="/products" component={ Products } />
      <Route path="/product" component={ Product } />
      <Route path="/cart" component={ Cart } />
+     <Route path="/checkout" component={ Checkout } />
      <Route path="/admin" component={ Admin } /> 
   </Switch>
 

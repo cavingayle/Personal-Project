@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { getProducts, addToCart } from '../../ducks/reducer';
+import { getProducts, actions } from '../../ducks/reducer';
 import './Products.css';
 import { Select } from 'antd';
 
@@ -16,6 +16,7 @@ class Products extends Component {
             this.props.getProducts( products.data )
             console.log( '--------products', this.props.products )
           }).catch( err => { console.log( err ) })
+          this.props.getCart()
       }
     
         render() {
@@ -73,4 +74,4 @@ class Products extends Component {
         cart: state.cart
       }
     }
-    export default connect( mapStateToProps, { getProducts, addToCart })( Products )
+    export default connect( mapStateToProps, { getProducts, ...actions })( Products )
