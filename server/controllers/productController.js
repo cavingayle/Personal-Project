@@ -14,13 +14,13 @@ module.exports ={
     //     res.json( payload );
     
     // },
-    // createProduct:( req, res, next ) => {
-    //     const dbInstance = req.app.get( 'db' )
-    //     const { productname, productprice, productcartdesc, productshortdesc, uploadUrl, productstock, productsize, productcolor, productcategory } = req.body;
-    //     dbInstance.createProduct( productname, productprice, productcartdesc, productshortdesc, uploadUrl, productstock, productsize, productcolor, productcategory )
-    //     .then( products =>res.status( 200 ).send( products ) )
-    //     .catch( error =>console.log( error ) )
-    // },
+    createProduct:( req, res, next ) => {
+        const dbInstance = req.app.get( 'db' )
+        const { productname, productprice, productcartdesc, productshortdesc, productimage, productstock, productsize, productcategory } = req.body;
+        dbInstance.create_product( productname, productprice, productcartdesc, productshortdesc, productimage, productstock, productsize, productcategory )
+        .then( products =>res.status( 200 ).send( products ) )
+        .catch( error =>console.log( error ) )
+    },
     
     
     getProducts:( req, res, next ) => {
