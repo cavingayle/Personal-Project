@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Radio } from 'antd';
+import { Form, Input, Button } from 'antd';
 import axios from "axios";
 
 const FormItem = Form.Item;
 
-export default class Admin extends Component {
+export default class AdminAddProduct extends Component {
     constructor() {
         super();
 
@@ -21,6 +21,11 @@ export default class Admin extends Component {
           };
 
         }
+
+        componentDidMount() {
+            console.log("hit")
+        }
+
         createProduct = () => {
             const { productname, productprice, productcartdesc, productshortdesc, productimage, productstock, productsize, productcategory } = this.state
             axios.post('/api/createProduct', { productname, productprice, productcartdesc, productshortdesc, productimage, productstock, productsize, productcategory }).then( res => {

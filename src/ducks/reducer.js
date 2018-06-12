@@ -27,7 +27,7 @@ const GET_USER = 'GET_USER';
 const GET_PRODUCTS = 'GET_PRODUCTS';
 const GET_PRODUCT = 'GET_PRODUCT';
 const GET_CART = 'GET_CART';
-const CART_TOTAL = 'CART_TOTAL'
+// const CART_TOTAL = 'CART_TOTAL'
 const INCREMENT_QTY = 'INCREMENT_QTY';
 const DECREMENT_QTY = 'DECREMENT_QTY';
 const CATEGORIES = 'CATEGORIES';
@@ -175,20 +175,6 @@ function reducer( state=INITIAL_STATE, action ){
             return state
     }
 }
-
-// export function addToCart( product ) {
-//     return {
-//         type: ADD_TO_CART,
-//         payload: product
-//     };
-// }
-
-// export function removeFromCart( product ) {
-//     return {
-//         type: REMOVE_FROM_CART,
-//         payload: product
-//     };
-// }
 
 export function getProducts( products ) {
     return {

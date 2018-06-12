@@ -5,7 +5,9 @@ import Products from './components/Products/Products';
 import Product from './components/Product/Product';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
-import Admin from './components/Admin/Admin';
+import AdminNav from './components/Admin/AdminNav';
+import AdminAddProduct from './components/Admin/AdminAddProduct';
+import AdminEditProduct from './components/Admin/AdminEditProduct';
 
 
 
@@ -16,7 +18,9 @@ const routes =
      <Route path="/product" component={ Product } />
      <Route path="/cart" component={ Cart } />
      <Route path="/checkout" component={ Checkout } />
-     <Route path="/admin" component={ Admin } /> 
+     <Route path="/admin" component={ AdminNav } /> 
+     <Route path="/adminaddproduct" component={ AdminAddProduct } />
+     <Route path="/admineditproduct" component={ AdminEditProduct } />
   </Switch>
 
 

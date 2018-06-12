@@ -1,7 +1,7 @@
 import React from 'react';
 import './Nav.css';
 import { Link } from 'react-router-dom';
-import AdminNav from '../../Admin/AdminNav';
+// import AdminNav from '../../Admin/AdminNav';
 
 const Nav = () => {
     return (

@@ -3,7 +3,7 @@ import { getProducts, actions } from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import currency from 'currency.js';
+// import currency from 'currency.js';
 
 class Cart extends Component {
     
