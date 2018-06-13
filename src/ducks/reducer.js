@@ -24,6 +24,7 @@ const INITIAL_STATE = {
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const DELETE_PRODUCT = 'DELETE_PRODUCT';
+const EDIT_PRODUCT = 'EDIT_PRODUCT';
 const GET_USER = 'GET_USER';
 const GET_PRODUCTS = 'GET_PRODUCTS';
 const GET_PRODUCT = 'GET_PRODUCT';
@@ -55,17 +56,34 @@ export const actions = {
     },
 
     editProduct: ( id, key, val ) => {
+        console.log(id)
         return ( dispatch, getState ) => {
             let products = [ ...getState().products ]
+            console.log('products', products)
+            let index = products.findIndex( e => {
+                return e.productid === id
+            })
+            console.log(index)
+            products[index][key] = val;
+            
+
+                // make database call to update the product property val & key
+                axios.put(`/api/shop/${ id }`, products[index] )
+                    .then( () => {
+                    }).catch( err => { console.log( err ) })
+                    return dispatch({
+                        type: EDIT_PRODUCT,
+                        payload: products
+                    })
         }
     },
 
     deleteProduct: ( id ) => {
         return ( dispatch, getState ) => {
             let products = [ ...getState().products ]
-        
+
             let index = products.findIndex( e => {
-            e.productid === id
+            return e.productid === id
         })
         products.splice( index, 1 );
         axios.delete( `/api/shop/${ id }` ).then( res => {
@@ -182,6 +200,9 @@ function reducer( state=INITIAL_STATE, action ){
         return { ...state, cart_total: action.payload }
 
         case DELETE_PRODUCT:
+        return { ...state, products: action.payload }
+
+        case EDIT_PRODUCT:
         return { ...state, products: action.payload }
     
         // case GET_CART:

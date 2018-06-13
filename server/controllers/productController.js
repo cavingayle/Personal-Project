@@ -74,11 +74,21 @@ module.exports ={
         const productId=req.params.id
         dbInstance.get_product_by_id( productId ).then( product => res.status( 200 ).send( product ) )
         .catch( error =>console.log( error ) )
-    }
+    },
 
     // getNecklaceSizes:( req, res, next ) => {
     //     const dbInstance = req.app.get( 'db' )
     //     dbInstance.get_necklace_sizes().then( products =>res.status( 200 ).send( products ))
     //     .catch( error =>console.log( error ) )
     // }
+
+    editProduct:( req, res, next ) => {
+        const dbInstance = req.app.get( 'db' )
+        const productId = req.params.id
+        const { productname, productprice, productcartdesc, productshortdesc, productimage, productstock, productsize, productcategory } = req.body;
+        console.log( 'req.body', req.body, 'productId', productId )
+        
+        dbInstance.update_product( productId, productname, productprice, productcartdesc, productshortdesc, productimage, productstock, productsize, productcategory ).then( product => res.status( 200 ).end() )
+        .catch( error => console.log( error ) )
+    }
 }

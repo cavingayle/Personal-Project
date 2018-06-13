@@ -8,12 +8,19 @@ import { getProducts, actions } from '../../ducks/reducer';
 class AdminEditProduct extends Component {
     constructor( props ){
         super( props )
+
+        this.state= {
+          loading: false
+        }
       }
       componentDidMount( props ){
         axios.get( '/api/shop' )
           .then( products => {
             this.props.getProducts( products.data )
-            console.log( '--------products', products.data )
+            // console.log( '--------products', products.data )
+            this.setState({
+              loading: true
+            })
           }).catch( err => { console.log( err ) })
       }
 
@@ -28,8 +35,9 @@ class AdminEditProduct extends Component {
             // console.log('----------e', e);
             return <div key={ i } className='item'>
             <div>
-                    <h1>{ e.productname }</h1>
-                    <h2> { e.productcartdesc } </h2>
+          {/* create variable to hold the value of the updated text */}
+                    <h1 onClick={ f => f.target.contentEditable=true} onBlur={ f => this.props.editProduct( e.productid, 'productname', f.target.innerText ) }>{ e.productname }</h1>
+                    <h2 onClick={ f => f.target.contentEditable=true} onBlur={ f => this.props.editProduct( e.productid, 'productcartdesc', f.target.innerText ) }> { e.productcartdesc } </h2>
                     <img src ={ e.productimage } alt={e.productname}  />
                     <h3>{ e.productshortdesc } </h3>
                     <span>${ e.productprice }</span>
@@ -41,7 +49,7 @@ class AdminEditProduct extends Component {
           }): 'nothing to display'
         return (
             <div>
-                { products }
+                { this.state.loading ? products : <img src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif' />}
             </div>
         );
     }
