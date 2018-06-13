@@ -13,15 +13,15 @@ class AdminEditProduct extends Component {
         axios.get( '/api/shop' )
           .then( products => {
             this.props.getProducts( products.data )
-            console.log( '--------products', this.props.products )
+            console.log( '--------products', products.data )
           }).catch( err => { console.log( err ) })
       }
 
-      deleteProduct() {
-        axios.delete( '/api/shop/:id' ).then( res => {
-            // this.props.
-        })
-      }
+      // deleteProduct( id ) {
+      //   axios.delete( `/api/shop/${ id }` ).then( res => {
+      //       this.props.getProducts( res.data )
+      //   }).catch( err => { console.log( err ) })
+      // }
 
     render() {
           const products = this.props.products ? this.props.products.map( ( e, i ) => {
@@ -35,7 +35,7 @@ class AdminEditProduct extends Component {
                     <span>${ e.productprice }</span>
 
                     <p>{ e.productstock }</p>
-                    {/* <button onClick={ deleteProduct() } >Delete Product</button> */}
+                    <button onClick={ () => this.props.deleteProduct( e.productid ) } >Delete Product</button>
             </div>
                    </div>
           }): 'nothing to display'

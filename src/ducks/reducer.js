@@ -23,6 +23,7 @@ const INITIAL_STATE = {
 
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+const DELETE_PRODUCT = 'DELETE_PRODUCT';
 const GET_USER = 'GET_USER';
 const GET_PRODUCTS = 'GET_PRODUCTS';
 const GET_PRODUCT = 'GET_PRODUCT';
@@ -53,17 +54,29 @@ export const actions = {
         }
     },
 
-    // cartTotal: () => {
-    //     return ( dispatch, getState ) => {
-    //       let cart = [ ...getState().cart ]
-    //       let total = cart[0] ?  cart.map( e => e.total ).reduce( (a, b) => a + b ) : 0
-    
-    //       return dispatch({
-    //         type: CART_TOTAL,
-    //         payload: total
-    //       })
-    //     }
-    // },
+    editProduct: ( id, key, val ) => {
+        return ( dispatch, getState ) => {
+            let products = [ ...getState().products ]
+        }
+    },
+
+    deleteProduct: ( id ) => {
+        return ( dispatch, getState ) => {
+            let products = [ ...getState().products ]
+        
+            let index = products.findIndex( e => {
+            e.productid === id
+        })
+        products.splice( index, 1 );
+        axios.delete( `/api/shop/${ id }` ).then( res => {
+
+        }).catch( err => { console.log( err ) })
+                return dispatch({
+                    type: DELETE_PRODUCT,
+                    payload: products
+                })
+    }
+    },
 
     addToCart: ( product ) => {
         return ( dispatch, getState ) => {
@@ -166,7 +179,10 @@ function reducer( state=INITIAL_STATE, action ){
         return { ...state, cart: action.payload }
 
         case GET_CART:
-        return { ...state, cart_total: action.payload}
+        return { ...state, cart_total: action.payload }
+
+        case DELETE_PRODUCT:
+        return { ...state, products: action.payload }
     
         // case GET_CART:
         // return { ...state, cart: action.payload[0], cart_total: action.payload[1]}

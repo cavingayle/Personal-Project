@@ -39,7 +39,7 @@ app.delete("/api/shop/:id", productController.deleteProduct)
 app.post("/api/createProduct", productController.createProduct)
 // app.get("/api/itemOptions", productController.itemOptions) 
 // app.get("/api/optionByProductID/:id", productController.optionByProductID)
-app.get("/api/test", productController.getNecklaceSizes)
+// app.get("/api/test", productController.getNecklaceSizes)
 
 //*************USER login/logout Endpoints**************/
 // app.get("/auth/callback", authCtrl.auth) 

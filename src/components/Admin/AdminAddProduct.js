@@ -22,9 +22,9 @@ export default class AdminAddProduct extends Component {
 
         }
 
-        componentDidMount() {
-            console.log("hit")
-        }
+        // componentDidMount() {
+        //     console.log("hit")
+        // }
 
         createProduct = () => {
             const { productname, productprice, productcartdesc, productshortdesc, productimage, productstock, productsize, productcategory } = this.state

@@ -53,6 +53,7 @@ module.exports ={
         const dbInstance = req.app.get( 'db' )
         // console.log("parameters are",req.params);
         const productId=req.params.id;
+        console.log(productId)
         dbInstance.delete_product( productId ).then( products =>res.status( 200 ).send( products ) )
         .catch( error =>console.log( error ) )
     },

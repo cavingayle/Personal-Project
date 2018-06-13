@@ -1,4 +1,3 @@
-UPDATE products
-SET productstock = 0
+DELETE FROM products
 WHERE productID = $1
 returning *;
