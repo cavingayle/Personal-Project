@@ -10,7 +10,7 @@ const INITIAL_STATE = {
     products: [],
     product: [],
     categories: [],
-    cartTotal: 0,
+    cart_total: 0,
     user: {
         name:  '',
         email:  '',

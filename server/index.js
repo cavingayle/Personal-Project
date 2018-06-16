@@ -59,7 +59,7 @@ app.get('/api/cartToRedux', userController.cartToRedux)
 // app.get('/api/orders', userController.orderByUserId)
 
 // //***************ORDER Endpoints *********************/
-// app.post('/api/lineitem/', orderController.addToLineItem) 
+app.post('/api/lineitem/', orderController.addToLineItem) 
 
 // //*************Cloudinary Image uploader  */
 // app.get('/api/upload', productController.imageUpload);

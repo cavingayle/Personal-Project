@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { getProducts, actions } from '../../../ducks/reducer';
+import { connect } from 'react-redux';
 import './Nav.css';
 import { Link } from 'react-router-dom';
 // import AdminNav from '../../Admin/AdminNav';
 
-const Nav = () => {
+class Nav extends Component {
+    render() {
     return (
         <div className="Nav">
             <Link to="/"><h1>A Glass of Harmony</h1></Link>
@@ -12,11 +15,24 @@ const Nav = () => {
             <Link to="/cart" >
                 <div className="cart-icon">
                     Cart
-                    <div>0</div>
+                    <div>{ this.props.cart.length }</div>
                 </div>
             </Link>
         </div>
     );
 };
+}
 
-export default Nav;
+const mapStateToProps = state => {
+    return {
+      cart: state.cart,
+      total: state.cart_total
+    }
+  }
+  
+  const mapDispatchToProps = {
+    getProducts,
+    ...actions
+  }
+  
+  export default connect( mapStateToProps, mapDispatchToProps )( Nav )
