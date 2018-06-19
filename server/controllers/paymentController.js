@@ -11,10 +11,10 @@ module.exports = {
         
     },
     paymentAPI(req, res) {
-        // console.log("inside stripe shipping details from session",req.session.shippingDetails);
-        // console.log("inside stripe user detail from user cart session",req.session.user.cart);
-        // console.log('------req.body', req.body);
-        const { source, currency, amount, acct, addresses, email, tax } = req.body
+        console.log("inside stripe shipping details from session",req.session.shippingDetails);
+        console.log("inside stripe user detail from user cart session",req.session.user.cart);
+        console.log('------req.body', req.body);
+        const { source, currency, amount, acct, address, email, tax } = req.body
 
         stripe.charges.create({ source, currency, amount }, { stripe_account: acct }, (stripeErr, stripeRes) => {
             if (stripeErr) {
@@ -29,15 +29,14 @@ module.exports = {
                 const{cart}=req.session.user.cart
                 const date = new Date().toDateString()
                 
-                    req.app.get('db').createOrder([userid,amount,address,city,state,zip_code,phone,shippingcharges,tax,email,date]).then(orders => {
+                    req.app.get('db').create_order([userid,amount,address,city,state,zip_code,phone,shippingcharges,tax,email,date]).then(orders => {
                         res.status(200).send(orders)
-                        // console.log(orders);
+                        console.log('orders', orders);
                     }).catch(error => {
-                        // console.log("post orders controller error", error)
+                        console.log("post orders controller error", error)
                     
                     })
-               
-    
+            
             }
         })
     }

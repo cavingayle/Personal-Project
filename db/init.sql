@@ -44,6 +44,14 @@ orderShipped INT,
 orderTrackingNumber VARCHAR(80)
 );
 
+CREATE TABLE IF NOT EXISTS lineitem(
+lineID SERIAL,
+orderID INT REFERENCES orders(orderID),
+productID INT REFERENCES products(productID),
+quantity INT
+
+);
+
 CREATE TABLE IF NOT EXISTS productcategories(
 categoryID serial UNIQUE,
 categoryName VARCHAR(50)
@@ -113,6 +121,7 @@ optionName INT REFERENCES optiongroups(optionGroupID)
 
 insert into products(productName, productPrice, productCartDesc, productShortDesc, productImage, productStock, productCategory)VALUES
 ('DMB inspired ONE SWEET World - Necklace, Tree Necklace, keychain option','15','Necklace, Tree Necklace, keychain option','This 1 inch disc is hand stamped with the famous Dave Matthews Band song title ONE SWEET WORLD, and is adorned with a silver tree charm with a chain type, length, or keychain options available when adding to cart. ','https://img.etsystatic.com/il/88ebcf/1236333125/il_570xN.1236333125_cgmn.jpg','1', 'Quotes/Lyrics')
+('GRADUATION GIFT - Oh the Places Youll Go, Compass Jewelry, Dr. Seuss quote, hand stamped', '15', 'jdlajdlfj', 'This fun 1 inch pendant is stamped with the famous line "Oh the Places Youll Go" written by Dr. Seuss. Adorned with a compass charm. Your choice in ball chain, stainless steel cable chain (pictures) or Keychain.', 'https://img.etsystatic.com/il/4f2c27/1509887972/il_570xN.1509887972_aw8y.jpg', '10', 'Quotes/Lyrics');
 
 INSERT INTO categorynecklacesizes (productID,necklace16,necklace18,necklace20,necklace22,necklace24)VALUES(1,true,true,true,true,false);
 -- SELECT * FROM products;

@@ -25,8 +25,11 @@ class Stripe extends Component {
   successPayment = data => {
     console.log("Payment Successful", data.data[0].orderid);
     const orderid = data.data[0].orderid;
-    axios.post("/api/lineitem/", { orderid })
-    .then(response => this.setState({ lineitem: response.data }));
+    axios.post("/api/lineitem/", { orderid }).then(response => {
+      console.log( "response", response );
+      this.setState({ lineitem: response.data })
+  });
+    
      this.setState({ orderNumber: data.data[0].orderid, orderComplete: true });
     console.log("values in state", this.state.orderNumber);
   };
@@ -40,10 +43,8 @@ class Stripe extends Component {
         currency: CURRENCY,
         email: token.email,
         tax: tax,
-        amount: fromUSDToCent(amount)
-      })
-      .then(this.successPayment)
-      .catch(this.errorPayment);
+        amount: Math.ceil(fromUSDToCent(amount))
+      }).then(this.successPayment).catch(this.errorPayment);
 
   render() {
     if (this.state.orderComplete) {

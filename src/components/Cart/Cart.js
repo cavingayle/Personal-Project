@@ -3,6 +3,7 @@ import { getProducts, actions } from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Login from '../Login/Login';
 // import currency from 'currency.js';
 
 class Cart extends Component {
@@ -68,7 +69,8 @@ class Cart extends Component {
     
                     <br />
                      
-                    { window.location.pathname==='/checkout' ? null :  <Link to="/checkout">     <Button fullWidth={true} variant="raised" color="secondary"> Check Out </Button></Link> }
+                    {/* { window.location.pathname==='/checkout' ? null :  <Link to="/checkout">     <Button fullWidth={true} variant="raised" color="secondary"> Check Out </Button></Link> } */}
+                    <Button onClick={()=> Login(this.props.cart) }fullWidth={true} variant="raised" color="secondary"> Check Out </Button>
                     </div>
             )
         }

@@ -13,6 +13,7 @@ import { getProducts, actions } from '../../ducks/reducer';
 import axios from 'axios';
 import Cart from '../Cart/Cart';
 import StripeCheckout from './StripeCheckout';
+import Login from '../Login/Login';
 
 class Checkout extends Component {
     constructor( props ) {
@@ -34,6 +35,10 @@ class Checkout extends Component {
     componentDidMount = () => {
         console.log('this.props.total', this.props.total)
         console.log('this.props.cart', this.props.cart)
+        let data = sessionStorage.getItem('cart')
+        console.log('sessionStorage cart', JSON.parse(data))
+        this.props.getCart(JSON.parse(data))
+        // let displaydata = data.map( e => {})
     }
 
     shippingDetails() {
@@ -50,6 +55,7 @@ class Checkout extends Component {
         })
         .then(res => {
           console.log('Value from express ' + JSON.stringify(res.data));
+          
         });
     }
 

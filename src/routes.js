@@ -10,7 +10,8 @@ import AdminAddProduct from './components/Admin/AdminAddProduct';
 import AdminEditProduct from './components/Admin/AdminEditProduct';
 import StripeCheckout from './components/Checkout/StripeCheckout';
 import OrderConfirmation from './components/Checkout/OrderConfirmation';
-import redirect from './components/Redirect/Redirect';
+// import Redirect from './components/Redirect/Redirect';
+import Contact from './components/Contact/Contact';
 
 
 
@@ -23,6 +24,7 @@ const routes =
      <Route path='/checkout' component={ Checkout } />
      <Route path='/stripecheckout' component={ StripeCheckout } />
      <Route path='/orderconfirmation:orderNumber' component={ OrderConfirmation } />
+     <Route path='/contact' component={ Contact } />
      <Route path='/redirect' component={ Redirect } />
      <Route path='/admin' component={ AdminNav } /> 
      <Route path='/adminaddproduct' component={ AdminAddProduct } />
