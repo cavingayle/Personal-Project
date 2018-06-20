@@ -1,1 +1,42 @@
-/* @import '~antd/lib/select/style/antd.css'; */
+.header-img {
+    background-image: url('https://olivia-des-cressonnieres.com/sites/default/files/styles/fullscreen_background/public/anne140072.jpg');
+    background-size: cover;
+    overflow: hidden;
+    z-index: -1;
+    height: calc(70vh + 150px);
+}
+
+.container {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 5% 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    /* height: 95vh; */
+    padding: 10px;
+    
+    
+}
+
+.img {
+    width: 150px;
+    height: 150px
+}
+
+.item {
+    display: grid;
+    margin: 0 auto;
+  
+ 
+}
+
+.item > * {
+    text-align: center;
+    justify-content: center;
+    font-family: 'Avenir',Arial,Helvetica,sans-serif;
+    color: black;
+
+    
+}

@@ -34,10 +34,9 @@ class Products extends Component {
             return <div key={ i } className='item'>
             <div>
                     <h1>{ e.productname }</h1>
-                    <h2> { e.productcartdesc } </h2>
-                    <img src ={ e.productimage } alt={e.productname}  />
+                    {/* <h2> { e.productcartdesc } </h2> */}
+                    <img className='img' src ={ e.productimage } alt={e.productname}  />
                     <h3>{ e.productshortdesc } </h3>
-                    <span>${ e.productprice }</span>
                     <Select
                     defaultValue="Select Chain Size"
                     style={{ width: 200 }}>
@@ -51,6 +50,8 @@ class Products extends Component {
                         <Option value={true}>Keychain</Option>
                       </OptGroup>
                     </Select> 
+                    <br/>
+                    <span>${ e.productprice }</span>
                     <p>{e.productstock <=0 ? 'out-of-stock' : e.productstock >0 && e.productstock <= 10 ? 'limited-stock!' : 'in-stock'}</p>
                     <button onClick={ () => this.props.addToCart( { name: e.productname, id: e.productid, qty: 1, image: e.productimage, price: e.productprice } ) }>Add to Cart</button>
             </div>
@@ -59,7 +60,7 @@ class Products extends Component {
           // { this.props.cart > 0 ? console.log( '---------productid', this.props.cart[0].productid : null) }
             return (
               <div>
-                <h1>Products</h1>
+                <div className='header-img'></div>
                 <div className='container'>
                 { products }
                 </div>
