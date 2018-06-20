@@ -10,16 +10,20 @@ class Nav extends Component {
     render() {
     return (
         <div className="Nav">
-            <Link onClick={()=> Login(this.props.cart) } to="/login" ><div> Login </div></Link>
-            <Link to="/"><h1>A Glass of Harmony</h1></Link>
-            { <AdminNav className= "AdminNav" /> }
-            <Link to="/products" ><div className="products">Products</div></Link>
-            <Link to="/cart" >
-                <div className="cart-icon">
-                    Cart
-                    <div>{ this.props.cart.length }</div>
+            <div>
+                <div className="menu">
+                    <Link className="login" onClick={()=> Login(this.props.cart) } to="/login" ><div> Login </div></Link>
+                    <Link to="/"><h1>A Glass of Harmony</h1></Link>
+                    { <AdminNav className= "adminNav" /> }
+                    <Link className="products" to="/products" ><div className="products">Products</div></Link>
+                    <Link to="/cart" >
+                        <div className="cart-icon">
+                            Cart
+                            <div>{ this.props.cart.length }</div>
+                        </div>
+                    </Link>
                 </div>
-            </Link>
+            </div>
         </div>
     );
 };
