@@ -26,9 +26,12 @@ module.exports = {
                 if(response.length){
                   // console.log("response from session",response[0].userid)
                   // console.log(response[0].userid)
-                //   if(response[0].userid === 1 ){
-                //     req.session.user.isAdmin = true
-                //   }
+                  if(response[0].userid === 1 ){
+                    req.session.user.isAdmin = true
+                    // res.redirect('/');
+                  } else if( req.session.user.cart = [] ){
+                      res.redirect('/');
+                  }
                   req.session.user.userid = response[0].userid;
                   req.session.user.name = response[0].username;
                   req.session.user.email = response[0].useremail;

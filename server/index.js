@@ -89,7 +89,7 @@ app.post('/api/lineitem/', orderController.addToLineItem)
 // app.get('/api/upload', productController.imageUpload);
 
 // //*************Admin Endpoints************ */
-// app.get('/api/allOrders', orderController.allOrdersAdmin)
+app.get('/api/allOrders', orderController.allOrdersAdmin)
 
 // Contact Email Setup
 app.post('/api/sendmail', mailController.sendMail);

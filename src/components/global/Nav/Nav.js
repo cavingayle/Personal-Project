@@ -3,14 +3,16 @@ import { getProducts, actions } from '../../../ducks/reducer';
 import { connect } from 'react-redux';
 import './Nav.css';
 import { Link } from 'react-router-dom';
-// import AdminNav from '../../Admin/AdminNav';
+import AdminNav from '../../Admin/AdminNav';
+import Login from '../../Login/Login';
 
 class Nav extends Component {
     render() {
     return (
         <div className="Nav">
+            <Link onClick={()=> Login(this.props.cart) } to="/login" ><div> Login </div></Link>
             <Link to="/"><h1>A Glass of Harmony</h1></Link>
-            {/* <AdminNav /> */}
+            { <AdminNav className= "AdminNav" /> }
             <Link to="/products" ><div className="products">Products</div></Link>
             <Link to="/cart" >
                 <div className="cart-icon">

@@ -21,6 +21,7 @@ const INITIAL_STATE = {
 
 };
 
+const SET_CART = 'SET_CART';
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const DELETE_PRODUCT = 'DELETE_PRODUCT';
@@ -37,6 +38,7 @@ const CATEGORIES = 'CATEGORIES';
 export const actions = {
 
     getCart: () => {
+        console.log('hit')
         return( dispatch, getState ) => {
             // console.log([...getState().cart])
             if(getState().cart[0]){
@@ -204,6 +206,9 @@ function reducer( state=INITIAL_STATE, action ){
 
         case EDIT_PRODUCT:
         return { ...state, products: action.payload }
+
+        case SET_CART:
+        return { ...state, cart: action.payload }
     
         // case GET_CART:
         // return { ...state, cart: action.payload[0], cart_total: action.payload[1]}
@@ -238,6 +243,14 @@ export function getUser( user ) {
     return {
         type: GET_USER,
         payload: user
+    };
+}
+
+export function setCart( cart ) {
+    console.log('reducer cart',cart)
+    return {
+        type: SET_CART,
+        payload: cart
     };
 }
 

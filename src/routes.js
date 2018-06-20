@@ -8,10 +8,12 @@ import Checkout from './components/Checkout/Checkout';
 import AdminNav from './components/Admin/AdminNav';
 import AdminAddProduct from './components/Admin/AdminAddProduct';
 import AdminEditProduct from './components/Admin/AdminEditProduct';
+import AdminData from './components/Admin/AdminData';
 import StripeCheckout from './components/Checkout/StripeCheckout';
 import OrderConfirmation from './components/Checkout/OrderConfirmation';
 // import Redirect from './components/Redirect/Redirect';
 import Contact from './components/Contact/Contact';
+
 
 
 
@@ -29,6 +31,7 @@ const routes =
      <Route path='/admin' component={ AdminNav } /> 
      <Route path='/adminaddproduct' component={ AdminAddProduct } />
      <Route path='/admineditproduct' component={ AdminEditProduct } />
+     <Route path='/admindata' component={ AdminData } />
   </Switch>
 
 

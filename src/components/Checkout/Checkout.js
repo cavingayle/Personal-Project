@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import { connect } from 'react-redux';
-import { getProducts, actions } from '../../ducks/reducer';
+import { getProducts, actions, setCart } from '../../ducks/reducer';
 import axios from 'axios';
 import Cart from '../Cart/Cart';
 import StripeCheckout from './StripeCheckout';
@@ -33,11 +26,13 @@ class Checkout extends Component {
     }
 
     componentDidMount = () => {
-        console.log('this.props.total', this.props.total)
-        console.log('this.props.cart', this.props.cart)
+        // console.log('this.props.total', this.props.total)
+        // console.log('this.props.cart', this.props.cart)
         let data = sessionStorage.getItem('cart')
-        console.log('sessionStorage cart', JSON.parse(data))
-        this.props.getCart(JSON.parse(data))
+        // console.log('sessionStorage cart', JSON.parse(data))
+        console.log('this.props.total', this.props.total )
+        // this.props.getCart()
+        this.props.setCart(JSON.parse(data))
         // let displaydata = data.map( e => {})
     }
 
@@ -63,7 +58,35 @@ class Checkout extends Component {
 
         const total = this.props.total;
         const { classes } = this.props;
+        console.log('----', this.props.cart)
 
+//         const cart = this.props.cart ? this.props.cart.map( ( e, i ) => {
+//           return <div key={ i }>
+//           <div className="cartitem">
+//           <div className ="cartbody">
+        
+//           <img src={ e.image } alt={ e.name }/> 
+//                 <p>{ e.name } </p>
+              
+//                 <p>Color: { e.color } </p>
+//                 <p>Size: { e.size } </p>
+              
+//                 </div>
+              
+//                 <div className ="cartbody">
+//                 <div>
+//                   <button onClick={ () => e.qty-1 === 0 ? this.delete(e.id) : this.decrement(e.id) }>-</button>
+//                   { e.qty }
+//                   <button onClick={ () => this.increment( e.id ) }>+</button>
+//                   </div>
+//                   <br />
+  
+//                 <span onClick={ () => this.delete( e.id )}> </span>
+//                 <p><b> Price: ${ e.price }</b> </p>
+//             </div>
+//             </div>
+//             </div>
+// }) : 'Your cart is empty!'
         return (
             <div className='checkout_main_body'>
       {/* <UserInfo /> */}
@@ -179,7 +202,7 @@ class Checkout extends Component {
           </div>
           <br />
         </div>
-
+                {/* { cart } */}
         <div className='checkout_body_form'>
           <div className='checkout_summary'>
             <h3> Cart Summary </h3>
@@ -231,6 +254,7 @@ const mapStateToProps = state => {
     };
             
 const mapDispatchToProps = {
-    ...actions
+    ...actions,
+    setCart
     };
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

@@ -12,11 +12,11 @@ module.exports ={
       })   
     },
 
-    // allOrdersAdmin:(req,res,next) =>{
-    //    const dbInstance=req.app.get( 'db' );
-    //    dbInstance.admin_getorders().then( orders=>res.status( 200 ).send( orders ))
-    //    .catch(error=>console.log( error ) )
-    // },
+    allOrdersAdmin:(req,res,next) =>{
+       const dbInstance=req.app.get( 'db' );
+       dbInstance.admin_get_orders().then( orders=>res.status( 200 ).send( orders ))
+       .catch(error=>console.log( error ) )
+    },
 
     ordersByUserId:(req,res,next)=>{
         const dbInstance = req.app.get( 'db' )

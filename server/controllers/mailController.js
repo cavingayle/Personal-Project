@@ -1,17 +1,15 @@
+require( "dotenv" ).config();
 const nodemailer = require( 'nodemailer' );
-require( 'dotenv' ).config();
 
 module.exports={
-    sendMail:( req, response ) =>{
-
+    sendMail:( req, res ) =>{
+        const { name, email, text } = req.body
         // const db = req.app.get('db');
         
         let transporter = nodemailer.createTransport({
-                service: "smtp.gmail.com",
-                secure: true,
-                port: 465,
+                service: "gmail",
                 auth:{
-                    user: "mcintdre000@gmail.com",
+                    user: "mcintir2@gmail.com",
                     pass: process.env.NODE_MAILER_PASS,
                     clientId: process.env.OAUTH_CLIENT_ID,
                     clientSecret: process.env.OAUTH_CLIENT_SECRET,
@@ -23,27 +21,28 @@ module.exports={
                     rejectUnauthorized: false
                 }
             });
-
+            
         let message = {
-            from:'"Drew" <mcintdre000@gmail.com>',
-            to:'mcintdre000@gmail.com',
+            from: name + ' ' + 'mcintir2@gmail.com',
+            to:'mcintir2@gmail.com',
             subject:'༜ Comments/Concerns ༜',
-            text:'',
+            text: name + ' ' + email + ' ' + text,
         }
 
         transporter.sendMail( message, ( err, info ) => {
             if( err ){
                 console.log(err);
-                response.status(500).send( 'Error' );
+              
             }
             else{
-                response.status(200).send( 'Okay' )
+               
                 console.log( "Message Sent", info );
             }
-            transporter.close();
+            
         })
-            }
-        }
+        
+    }
+}   
     
         
 

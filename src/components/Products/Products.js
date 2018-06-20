@@ -5,6 +5,7 @@ import axios from 'axios';
 import { getProducts, actions } from '../../ducks/reducer';
 import './Products.css';
 import { Select } from 'antd';
+import 'antd/lib/select/style/index.css'
 
 class Products extends Component {
     constructor( props ){
@@ -14,7 +15,7 @@ class Products extends Component {
         axios.get( '/api/shop' )
           .then( products => {
             this.props.getProducts( products.data )
-            console.log( '--------products', this.props.products )
+            // console.log( '--------products', this.props.products )
           }).catch( err => { console.log( err ) })
           this.props.getCart()
       }

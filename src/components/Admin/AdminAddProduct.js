@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'antd';
+import 'antd/lib/form/style/index.css'
+import 'antd/lib/input/style/index.css'
+import 'antd/lib/button/style/index.css'
 import axios from "axios";
 
 const FormItem = Form.Item;
