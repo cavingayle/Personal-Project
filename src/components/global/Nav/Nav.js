@@ -12,11 +12,11 @@ class Nav extends Component {
         <div className="Nav">
             <div>
                 <div className="left-nav">
-                    <Link className="login" onClick={()=> Login(this.props.cart) } to="/login" ><div> Login </div></Link>
-                    <div className="title"><Link to="/"><h1>A Glass of Harmony</h1></Link></div>
+                    <Link className="login" onClick={()=> Login(this.props.cart) } to="/login" ><div className="login"> Login </div></Link>
+                    <div><Link to="/"><h1 className="title" >A Glass of Harmony</h1></Link></div>
                 </div>
                 <div className="menu">
-                    { <AdminNav className= "adminNav" /> }
+                    { <AdminNav className= "ant-dropdown-link" /> }
                     <Link className="products" to="/products" ><div className="products">Products</div></Link>
                     <Link className="cart" to="/cart" >
                         <div className="cart-icon">

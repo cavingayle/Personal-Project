@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { getProducts, actions } from '../../ducks/reducer';
 import './Products.css';
 import { Select } from 'antd';
-import 'antd/lib/select/style/index.css'
+import 'antd/lib/select/style/index.css';
+import img from '../../media/whitebrushstroke.png.png';
 
 class Products extends Component {
     constructor( props ){
@@ -60,7 +61,9 @@ class Products extends Component {
           // { this.props.cart > 0 ? console.log( '---------productid', this.props.cart[0].productid : null) }
             return (
               <div>
-                <div className='header-img'></div>
+                <div className='header-img'>
+                </div>
+                <img className='brush2' src={ img } rel='brush stroke' />
                 <div className='container'>
                 { products }
                 </div>

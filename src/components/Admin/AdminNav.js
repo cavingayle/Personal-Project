@@ -24,7 +24,7 @@ export default class AdminNav extends Component {
         return (
             <Dropdown overlay={ menu }>
                 <a className="ant-dropdown-link" href="#">
-                    Admin <Icon type="down" />
+                    Admin <Icon className="ant-dropdown-link" type="down" />
                 </a>
             </Dropdown>
         );

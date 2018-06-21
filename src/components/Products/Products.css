@@ -6,6 +6,19 @@
     height: calc(70vh + 150px);
 }
 
+.brush2 {
+    background-size: 100%;
+    position: absolute;
+    bottom: 0;
+    /* max-width: 100%; */
+    /* width: 100%; */
+    height: 100px;
+    z-index: 2;
+    /* background: red; */
+    background-repeat: none;
+    background-position: center center;
+}
+
 .container {
     margin: 0 auto;
     display: grid;
@@ -15,7 +28,7 @@
     align-items: center;
     justify-content: center;
     /* height: 95vh; */
-    padding: 10px;
+    padding: 30px 10px 10px 10px;
     
     
 }
