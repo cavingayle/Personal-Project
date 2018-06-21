@@ -1,19 +1,19 @@
-// const cloudinary = require( 'cloudinary' );
+const cloudinary = require( 'cloudinary' );
 module.exports ={
 
-    // imageUpload: ( req, res ) => {
-    //     console.log("Inside server side")
-    //     const timestamp = Math.round( ( new Date() ).getTime() / 1000 );
-    //     const api_secret = process.env.CLOUDINARY_SECRET_API;
-    //     const signature = cloudinary.utils.api_sign_request( { timestamp: timestamp }, api_secret );
-    //     const payload = {
-    //         signature: signature,
-    //         timestamp: timestamp
-    //     };
-    //     // console.log("payload is ", payload)
-    //     res.json( payload );
+    imageUpload: ( req, res ) => {
+        console.log("Inside server side")
+        const timestamp = Math.round( ( new Date() ).getTime() / 1000 );
+        const api_secret = process.env.CLOUDINARY_SECRET_API;
+        const signature = cloudinary.utils.api_sign_request( { timestamp: timestamp }, api_secret );
+        const payload = {
+            signature: signature,
+            timestamp: timestamp
+        };
+        console.log("payload is ", payload)
+        res.json( payload );
     
-    // },
+    },
     createProduct:( req, res, next ) => {
         const dbInstance = req.app.get( 'db' )
         const { productname, productprice, productcartdesc, productshortdesc, productimage, productstock, productsize, productcategory } = req.body;

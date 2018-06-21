@@ -86,7 +86,7 @@ app.get('/api/checksession',userController.checkSession)
 app.post('/api/lineitem/', orderController.addToLineItem) 
 
 // //*************Cloudinary Image uploader  */
-// app.get('/api/upload', productController.imageUpload);
+app.get('/api/upload', productController.imageUpload);
 
 // //*************Admin Endpoints************ */
 app.get('/api/allOrders', orderController.allOrdersAdmin)
