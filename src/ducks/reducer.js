@@ -11,6 +11,7 @@ const INITIAL_STATE = {
     product: [],
     categories: [],
     cart_total: 0,
+    total: 0,
     user: {
         name:  '',
         email:  '',
@@ -21,7 +22,9 @@ const INITIAL_STATE = {
 
 };
 
+const CLEAR_CART = 'CLEAR_CART';
 const SET_CART = 'SET_CART';
+const SET_TOTAL = 'SET_TOTAL';
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const DELETE_PRODUCT = 'DELETE_PRODUCT';
@@ -44,7 +47,7 @@ export const actions = {
             if(getState().cart[0]){
                 let cart = [ ...getState().cart ]
                 let total = cart.reduce( ( a, b ) => a + b.price * b.qty, 0 )
-                // console.log('reducer total', total)
+                console.log('reducer total', total)
              
             return(
                 axios.get( '/api/user-data' ).then( res => {
@@ -209,6 +212,12 @@ function reducer( state=INITIAL_STATE, action ){
 
         case SET_CART:
         return { ...state, cart: action.payload }
+
+        case SET_TOTAL:
+        return { ...state, total: action.payload }
+
+        case CLEAR_CART:
+        return { ...state, cart: [], cart_total: 0, total: 0 }
     
         // case GET_CART:
         // return { ...state, cart: action.payload[0], cart_total: action.payload[1]}
@@ -247,10 +256,23 @@ export function getUser( user ) {
 }
 
 export function setCart( cart ) {
-    console.log('reducer cart',cart)
     return {
         type: SET_CART,
         payload: cart
+    };
+}
+
+export function setTotal( total ) {
+    console.log('reducer total', total)
+    return {
+        type: SET_TOTAL,
+        payload: total
+    };
+}
+
+export function clearCart( ) {
+    return {
+        type: CLEAR_CART
     };
 }
 

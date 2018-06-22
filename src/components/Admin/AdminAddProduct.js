@@ -5,6 +5,7 @@ import 'antd/lib/input/style/index.css'
 import 'antd/lib/button/style/index.css'
 import axios from 'axios';
 
+
 const FormItem = Form.Item;
 const CLOUDINARY_UPLOAD_URL ='https://api.cloudinary.com/v1_1/dbwgwsaeg/image/upload';
 
@@ -22,7 +23,8 @@ export default class AdminAddProduct extends Component {
             productstock: '',
             productsize: '',
             productcategory: '',
-            files: [],
+            uploadUrl: '',
+            files: []
           };
 
         }
@@ -32,20 +34,24 @@ export default class AdminAddProduct extends Component {
         // }
 
         uploadImage = ( file ) => {
-            console.log( 'inside uploadfile', file );
+            // console.log( 'inside uploadfile', file[0] );
             axios.get( '/api/upload').then( response => {
-              console.log( 'response data', response.data );
+            //   console.log( 'response data', response.data );
+
+                      let formData = new FormData();
+                        formData.append("signature", response.data.signature)
+                        formData.append("api_key","155942765433368");
+                        formData.append("timestamp", response.data.timestamp)
+                        formData.append("file", file[0]);
         
-              let formData = new FormData();
-              formData.append( 'signature', response.data.signature );
-              formData.append( 'api_key', '155942765433368' );
-              formData.append( 'timestamp', response.data.timestamp );
-            //   formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-              formData.append('file', file[0]);
-        
+            //   for(var pair of formData.entries()) {
+            //         console.log(pair); 
+            //      }
+            //     console.log('hit');
+                
               axios.post( CLOUDINARY_UPLOAD_URL, formData ).then( response => {
-                this.setState({ uploadUrl: response.data.secure_url });
-                console.log( 'Image url is ', this.state.uploadUrl );
+                this.setState({ productimage: response.data.secure_url });
+                // console.log( 'Image url is ', this.state.productimage );
               });
             }).catch( err => {
                 console.log( err );
@@ -138,11 +144,10 @@ export default class AdminAddProduct extends Component {
                         >
                             <Input 
                                    type='file'
-                                   value= { this.state.productimage } 
                                    placeholder='Imgage URL' 
-                                   onChange={ () => this.uploadImage( this.state.productimage )}
+                                   onChange={ (e) => this.uploadImage(e.target.files)}
                                    />
-                            {/* <button onClick={(e) => this.uploadImage({ productimage: e.target.value })}>Choose file</button> */}
+                           
                         </FormItem>
                         <FormItem
                         label='Product Stock'
@@ -175,6 +180,7 @@ export default class AdminAddProduct extends Component {
                             <Button onClick={ () => this.createProduct()} type='primary'>Submit</Button>
                         </FormItem>
                     </Form>
+                    <img src={this.state.productimage} alt='test'/>
       </div>
      </div>
     );

@@ -7,6 +7,13 @@ import AdminNav from '../../Admin/AdminNav';
 import Login from '../../Login/Login';
 
 class Nav extends Component {
+    constructor() {
+        super();
+
+    }
+    componentDidMount(){
+        console.log('hit')
+    }
     render() {
     return (
         <div className="Nav">

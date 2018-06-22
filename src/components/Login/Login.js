@@ -1,10 +1,10 @@
-function Login(cart){
+function Login(cart, total){
     localStorage.setItem('location', window.location.pathname)
     const local = localStorage.getItem('location')
     // axios.post('/api/sessionLocation', {local})
-    sessionStorage.setItem( 'cart', JSON.stringify(cart));
+    sessionStorage.setItem( 'sessionItem', JSON.stringify({cart: cart, total: total}));
 
-    console.log('-------cart', cart )
+    console.log('-------sessionItem', cart )
     
   
     const callbackUrl = window.location.origin + '/auth/callback'

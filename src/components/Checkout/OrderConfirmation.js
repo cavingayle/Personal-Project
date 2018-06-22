@@ -1,10 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import { actions, clearCart } from '../../ducks/reducer';
+import { connect } from 'react-redux';
 
 
-export default class OrderConfirmation extends Component {
+class OrderConfirmation extends Component {
+  constructor() {
+    super();
+
+    // this.props.clearCart()
+  }
+
+  componentDidMount = () => {
+    this.props.clearCart();
+  }
+
   render() {
+    console.log('order confirmation - this.props', this.props)
     return (
       <div className="confirmation-body">
   
@@ -30,3 +43,9 @@ export default class OrderConfirmation extends Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  ...actions,
+  clearCart
+  };
+export default connect(null, mapDispatchToProps)(OrderConfirmation);

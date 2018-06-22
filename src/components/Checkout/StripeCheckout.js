@@ -32,7 +32,9 @@ class Stripe extends Component {
     
      this.setState({ orderNumber: data.data[0].orderid, orderComplete: true });
     console.log("values in state", this.state.orderNumber);
+    console.log('session storage after clear', sessionStorage)
     sessionStorage.clear();
+    console.log('session storage after clear', sessionStorage)
   };
 
   errorPayment = data => { alert("Payment Error");

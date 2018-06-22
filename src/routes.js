@@ -25,7 +25,7 @@ const routes =
      <Route path='/cart' component={ Cart } />
      <Route path='/checkout' component={ Checkout } />
      <Route path='/stripecheckout' component={ StripeCheckout } />
-     <Route path='/orderconfirmation:orderNumber' component={ OrderConfirmation } />
+     <Route exact path='/orderconfirmation/:orderNumber' component={ OrderConfirmation } />
      <Route path='/contact' component={ Contact } />
      <Route path='/redirect' component={ Redirect } />
      <Route path='/admin' component={ AdminNav } /> 

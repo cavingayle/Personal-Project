@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
 import { getProducts, actions } from '../../ducks/reducer';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Login from '../Login/Login';
 // import currency from 'currency.js';
 
 class Cart extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      loggedIn: false
+    }
+  }
     
       componentDidMount = () => {
+        axios.get('/api/user-data').then( res => {
+          console.log('UserData',res.data)
+          if(res.data.userid) {
+            this.setState({
+              loggedIn: true
+            })
+          }
+        })
         this.props.getCart()
       }
       
@@ -26,13 +41,20 @@ class Cart extends Component {
         this.props.removeFromCart( product )
         this.props.getCart()
       }
+
+      componentWillUnmount = () => {
+        console.log("unmounted")
+        // this.setState(this.props.state)
+      }
     
     
       render() {
+        console.log('loggedIn', this.state.loggedIn)
         // console.log(window.location.pathname)
         console.log('this.props.total', this.props.total);
+        console.log('this.props.cart_total', this.props.cart_total)
         // console.log(this.props.cart)
-        const total = this.props.total
+        const {total, cart_total} = this.props
         console.log('total',total)
           const cart = this.props.cart ? this.props.cart.map( ( e, i ) => {
             return <div key={ i }>
@@ -63,14 +85,15 @@ class Cart extends Component {
               
           }) : 'Your cart is empty!'
             return (
+
                 <div>
                     { cart }
-                    <div><b>Order SubTotal: ${ this.props.cart[0] ? total : 0 } </b></div>
+                    <div><b>Order SubTotal: ${ cart_total ? cart_total : total } </b></div>
     
                     <br />
                      
                     {/* { window.location.pathname==='/checkout' ? null :  <Link to="/checkout">     <Button fullWidth={true} variant="raised" color="secondary"> Check Out </Button></Link> } */}
-                    <Button onClick={()=> Login(this.props.cart) }fullWidth={true} variant="raised" color="secondary"> Check Out </Button>
+                    {!this.state.loggedIn && <Button onClick={()=> Login(this.props.cart, this.props.cart_total) }fullWidth={true} variant="raised" color="secondary"> Check Out </Button>}
                     </div>
             )
         }
@@ -78,7 +101,7 @@ class Cart extends Component {
     const mapStateToProps = state => {
       return {
         cart: state.cart,
-        total: state.cart_total
+        cart_total: state.cart_total
       }
     }
     

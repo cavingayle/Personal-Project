@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import { getProducts, actions, setCart } from '../../ducks/reducer';
+import { getProducts, actions, setCart, setTotal } from '../../ducks/reducer';
 import axios from 'axios';
 import Cart from '../Cart/Cart';
 import StripeCheckout from './StripeCheckout';
@@ -11,7 +11,8 @@ import Login from '../Login/Login';
 class Checkout extends Component {
     constructor( props ) {
         super( props );
-
+        let data = sessionStorage.getItem('sessionItem')
+        let parsedData = JSON.parse(data);
         this.state = {
             email: '',
             address: '',
@@ -21,18 +22,35 @@ class Checkout extends Component {
             phone: '',
             username: '',      
             cart: this.props.cart,
-            total: this.props.total
+            total: parsedData.total
+            
         };
+
     }
 
     componentDidMount = () => {
         // console.log('this.props.total', this.props.total)
         // console.log('this.props.cart', this.props.cart)
-        let data = sessionStorage.getItem('cart')
+        let data = sessionStorage.getItem('sessionItem')
         // console.log('sessionStorage cart', JSON.parse(data))
         console.log('this.props.total', this.props.total )
         // this.props.getCart()
-        this.props.setCart(JSON.parse(data))
+        const parsedData = JSON.parse(data);
+        // console.log('parsedData.cart', parsedData.cart)
+        // console.log('parsedData', parsedData.total);
+        this.props.setCart(parsedData.cart)
+        this.props.setTotal(parsedData.total);
+        // console.log(this.props.total)
+        // if(this.props.total){
+        //   this.setState({
+        //     total: this.props.total
+        //   })
+        // }else {
+        //   this.setState({
+        //     total: parsedData.total
+        //   })
+        // }
+        // this.setState(this.state);
         // let displaydata = data.map( e => {})
     }
 
@@ -56,9 +74,10 @@ class Checkout extends Component {
 
     render() {
 
-        const total = this.props.total;
+        const { total } = this.state;
         const { classes } = this.props;
         console.log('----', this.props.cart)
+        console.log('this is the state :', this.state);
 
 //         const cart = this.props.cart ? this.props.cart.map( ( e, i ) => {
 //           return <div key={ i }>
@@ -207,7 +226,7 @@ class Checkout extends Component {
           <div className='checkout_summary'>
             <h3> Cart Summary </h3>
             <div className='checkout_box'>
-              <Cart />
+              <Cart total={this.state.total} />
               <div>
                 <div>
                   <span>Shipping(Flat Rate):</span>$5.00
@@ -249,12 +268,13 @@ class Checkout extends Component {
 const mapStateToProps = state => {
     return {
         cart: state.cart,
-        total: state.cart_total
+        total: state.total
         };
     };
             
 const mapDispatchToProps = {
     ...actions,
-    setCart
+    setCart,
+    setTotal
     };
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
