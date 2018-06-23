@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { getProducts, actions, setCart, setTotal } from '../../ducks/reducer';
 import axios from 'axios';
 import Cart from '../Cart/Cart';
@@ -52,6 +53,11 @@ class Checkout extends Component {
         // }
         // this.setState(this.state);
         // let displaydata = data.map( e => {})
+        console.log(this.props.cart.length)
+        setTimeout(() => {if(!this.props.cart.length) {
+          console.log('redirect', this.props);
+          return this.props.history.push('/')
+        }}, 1000)
     }
 
     shippingDetails() {

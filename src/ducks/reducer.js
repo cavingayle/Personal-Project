@@ -249,6 +249,7 @@ export function getCategories( category ) {
 }
 
 export function getUser( user ) {
+    console.log('reducer - user', user)
     return {
         type: GET_USER,
         payload: user
