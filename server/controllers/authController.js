@@ -22,7 +22,7 @@ module.exports = {
               // console.log(email)
               req.app.get('db').find_user(email).then(response =>{
                
-                // console.log("response from database",response)
+                console.log("response from database",response)
                 if(response.length){
                   // console.log("response from session",response[0].userid)
                   // console.log('userid', response[0].userid)
@@ -63,10 +63,7 @@ module.exports = {
       },
       logout: (req, res) => {
         req.session.destroy();
-        res.status(200).send("logged out").catch(error => {
-          console.log(error);
-        
-      });
+        res.status(200).send("logged out")
     },
 
         

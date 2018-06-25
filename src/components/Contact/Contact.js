@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Contact.css';
 
 export default class Contact extends Component {
     constructor() {
@@ -44,12 +45,13 @@ export default class Contact extends Component {
     render() {
         
         return (
-            <div>
+            <div className= 'contact-container'>
                 <div>
-                    <h1> Contact </h1>
+                    <h1 className= 'contact-title'> Contact </h1>
                     <h2> Customer Service </h2>
                     <div class="contact">
-                        <h3>Email Us</h3>
+                        <h3>Email Us!</h3>
+                        <br/>
                         <form className="contact-form" >
                             <div className="form-field">
                             <label htmlFor="name">

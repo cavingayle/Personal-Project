@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'antd';
-import 'antd/lib/form/style/index.css'
-import 'antd/lib/input/style/index.css'
-import 'antd/lib/button/style/index.css'
+import 'antd/lib/form/style/index.css';
+import 'antd/lib/input/style/index.css';
+import 'antd/lib/button/style/index.css';
+import '../../Styling/Admin.css';
 import axios from 'axios';
 
 
@@ -29,10 +30,6 @@ export default class AdminAddProduct extends Component {
 
         }
 
-        // componentDidMount() {
-        //     console.log('hit')
-        // }
-
         uploadImage = ( file ) => {
             // console.log( 'inside uploadfile', file[0] );
             axios.get( '/api/upload').then( response => {
@@ -43,11 +40,6 @@ export default class AdminAddProduct extends Component {
                         formData.append("api_key","155942765433368");
                         formData.append("timestamp", response.data.timestamp)
                         formData.append("file", file[0]);
-        
-            //   for(var pair of formData.entries()) {
-            //         console.log(pair); 
-            //      }
-            //     console.log('hit');
                 
               axios.post( CLOUDINARY_UPLOAD_URL, formData ).then( response => {
                 this.setState({ productimage: response.data.secure_url });
@@ -98,11 +90,12 @@ export default class AdminAddProduct extends Component {
           wrapperCol: { span: 14, offset: 4 },
         } : null;
         return (
-            <div>
-                <div>
+            <div className='form-container background'>
+                <div className='admin-form'>
                     <Form layout={formLayout}>
                         
                         <FormItem
+                        className='FormItem'
                         label='Product Name'
                         { ...formItemLayout }
                         >

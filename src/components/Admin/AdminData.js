@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { arrayToArrayofObject } from '../../utils/functions';
+import '../../Styling/Admin.css';
 
 export default class AdminOrders extends Component {
   constructor(){
@@ -30,7 +31,7 @@ componentDidMount(){
     let newArray = this.state.orders.map(key => {
             // console.log('orderArrayOfProductObj', orderArrayOfProductObj, 'key', key, 'orderArrayOfProductObj[key].orderamount', orderArrayOfProductObj[key].orderamount,  'orderArrayOfProductObj[key].orderDate', orderArrayOfProductObj[key].orderDate, 'orderArrayOfProductObj[key].products', orderArrayOfProductObj[key].products)
             return(
-                <div>
+                <div className= 'data-container admin-form background'>
                     <p> Order ID: { key.orderid }</p>
                     <p> Username: { key.username }</p>
                     <p> Order Date: { key.orderdate }</p>

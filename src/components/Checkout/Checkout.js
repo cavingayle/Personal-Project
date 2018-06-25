@@ -8,6 +8,7 @@ import axios from 'axios';
 import Cart from '../Cart/Cart';
 import StripeCheckout from './StripeCheckout';
 import Login from '../Login/Login';
+import '../../Styling/Checkout.css';
 
 class Checkout extends Component {
     constructor( props ) {
@@ -84,40 +85,12 @@ class Checkout extends Component {
         const { classes } = this.props;
         console.log('----', this.props.cart)
         console.log('this is the state :', this.state);
-
-//         const cart = this.props.cart ? this.props.cart.map( ( e, i ) => {
-//           return <div key={ i }>
-//           <div className="cartitem">
-//           <div className ="cartbody">
-        
-//           <img src={ e.image } alt={ e.name }/> 
-//                 <p>{ e.name } </p>
-              
-//                 <p>Color: { e.color } </p>
-//                 <p>Size: { e.size } </p>
-              
-//                 </div>
-              
-//                 <div className ="cartbody">
-//                 <div>
-//                   <button onClick={ () => e.qty-1 === 0 ? this.delete(e.id) : this.decrement(e.id) }>-</button>
-//                   { e.qty }
-//                   <button onClick={ () => this.increment( e.id ) }>+</button>
-//                   </div>
-//                   <br />
-  
-//                 <span onClick={ () => this.delete( e.id )}> </span>
-//                 <p><b> Price: ${ e.price }</b> </p>
-//             </div>
-//             </div>
-//             </div>
-// }) : 'Your cart is empty!'
         return (
             <div className='checkout_main_body'>
       {/* <UserInfo /> */}
         <div className='checkout_body_form '>
           <div className='checkout_summary'>
-            <h3>Check Out </h3>
+            <h3 className= 'checkout-title'> Shipping Details </h3>
             <div className='checkout_box'>
               <TextField
                 required
@@ -230,7 +203,7 @@ class Checkout extends Component {
                 {/* { cart } */}
         <div className='checkout_body_form'>
           <div className='checkout_summary'>
-            <h3> Cart Summary </h3>
+            <h3 className= 'checkout-title'> Cart Summary </h3>
             <div className='checkout_box'>
               <Cart total={this.state.total} />
               <div>
@@ -245,7 +218,7 @@ class Checkout extends Component {
                 </div>
               </div>
               <div className='minicart_ordersubtotals'>
-                <span>Order Total:</span>
+                <div>Order Total:</div>
                 <div>${(total * 1.06 + 5).toFixed(2)} </div>
               </div>
             </div>

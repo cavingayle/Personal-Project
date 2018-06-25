@@ -1,0 +1,19 @@
+.contact-container {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+    align-items: stretch;
+    background: rgb(179, 200, 209);
+    padding: 200px 0;
+}
+
+.contact-container > div {
+    text-align: center;
+}
+
+.contact-title {
+    font-size: 20pt;
+    padding-bottom: 10px;
+    font-weight: bold;
+}

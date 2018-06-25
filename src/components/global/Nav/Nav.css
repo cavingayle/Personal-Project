@@ -23,7 +23,7 @@ body {
     padding-left: 10px;
     display: flex;
     justify-content: space-between;
-    /* width: 100%; */
+    width: 100%;
     /* flex-direction: column; */
     align-items: center;
     /* align-content: center; */
@@ -61,15 +61,15 @@ body {
 } */
 
 .title {
-    font-size: 1.5em;
-    font-family: cursive;
+    font-size: 2em;
+    font-family: flash back;
     text-align: center;
     color: firebrick !important;
 }
 
 .menu {
     display: flex;
-    /* position: relative; */
+    position: relative;
     /* flex-direction: row; */
     font-family: 'Avenir',Arial,Helvetica,sans-serif;
     z-index: 1001;
@@ -80,7 +80,7 @@ body {
     align-items: center;
 }
 
-.login, .products, .cart {
+.login, .logout, .products, .cart {
     /* content: "";
     position: absolute;
     bottom: 15px;
@@ -90,11 +90,25 @@ body {
     /* background-color: #000000; */
     /* transform: scaleX(0);
     transition: all 0.3s ease-in-out; */
+    position: relative;
     color: white !important;
     padding: 5px;
-    background: url('../../../media/594192a35eb5d45f10e35b30.png') center center;
+    /* background: url('../../../media/594192a35eb5d45f10e35b30.png') center center; */
     background-size: cover;
     background-repeat: none;
+}
+
+.underline:hover::after {
+    content: "  ";
+    position: absolute;
+    top: 30px;
+    height: 1px;
+    left: 0;
+    bottom: 15px;
+    width: 100%;
+    /* background-color: #000000; */
+    border-bottom: solid white 1px;
+    animation: underline 1s forwards;
 }
 
 .ant-dropdown-link, a:Link {
@@ -105,10 +119,19 @@ body {
 
 .ant-dropdown-link {
     padding: 5px;
-    background: url('../../../media/594192a35eb5d45f10e35b30.png') center center;
+    /* background: url('../../../media/594192a35eb5d45f10e35b30.png') center center; */
     background-size: cover;
     background-repeat: none;
 }
+
+*:before, *:after {
+    box-sizing: inherit;
+}
+
+@keyframes underline {
+    0%{transform: scaleX(0);}
+    100%{transform: scaleX(1)}
+  }
 
 /* h1 {
     color: firebrick !important;
@@ -120,9 +143,10 @@ body {
 
 .cart-icon {
     display: flex;
-    /* position: relative; */
-    height: 50px;
-    width: 50px;
+    position: relative;
+    height: 59px;
+    width: 122px;
+    justify-content: center;
     align-items: center;
     align-content: center;
     background: url('../../../media/594192a35eb5d45f10e35b30.png') center center;
@@ -131,14 +155,16 @@ body {
     /* width: 20px; */
     /* text-align: center; */
     color: white;
+    z-index: 10;
 }
 
 .cart-icon > div {
     display: flex;
-    /* position: relative; */
+    position: relative;
     align-items: center;
-    width: 15px;
-    height: 15px;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
     text-align: center;
     border: 1px solid rgba(250, 250, 250, 0.6);
     border-radius: 20px;

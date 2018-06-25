@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { getProducts, actions } from '../../ducks/reducer';
+import { Button } from 'antd';
+import 'antd/lib/button/style/index.css';
+import '../../Styling/Admin.css';
 
 
 class AdminEditProduct extends Component {
@@ -38,17 +41,17 @@ class AdminEditProduct extends Component {
           {/* create variable to hold the value of the updated text */}
                     <h1 onClick={ f => f.target.contentEditable=true} onBlur={ f => this.props.editProduct( e.productid, 'productname', f.target.innerText ) }>{ e.productname }</h1>
                     <h2 onClick={ f => f.target.contentEditable=true} onBlur={ f => this.props.editProduct( e.productid, 'productcartdesc', f.target.innerText ) }> { e.productcartdesc } </h2>
-                    <img src ={ e.productimage } alt={e.productname}  />
-                    <h3>{ e.productshortdesc } </h3>
-                    <span>${ e.productprice }</span>
+                    <img className= 'img'src ={ e.productimage } alt={e.productname} onClick={ f => f.target.contentEditable=true} onBlur={ f => this.props.editProduct( e.productid, 'productimage', f.target.innerText ) } />
+                    <h3 onClick={ f => f.target.contentEditable=true} onBlur={ f => this.props.editProduct( e.productid, 'productshortdesc', f.target.innerText ) }>{ e.productshortdesc } </h3>
+                    <span onClick={ f => f.target.contentEditable=true} onBlur={ f => this.props.editProduct( e.productid, 'productprice', f.target.innerText ) }>${ e.productprice }</span>
 
-                    <p>{ e.productstock }</p>
-                    <button onClick={ () => this.props.deleteProduct( e.productid ) } >Delete Product</button>
+                    <p onClick={ f => f.target.contentEditable=true} onBlur={ f => this.props.editProduct( e.productid, 'productstock', f.target.innerText ) }>{ e.productstock }</p>
+                    <Button type='primary' onClick={ () => this.props.deleteProduct( e.productid ) } >Delete Product</Button>
             </div>
                    </div>
           }): 'nothing to display'
         return (
-            <div>
+            <div className='container background'>
                 { this.state.loading ? products : <img src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif' />}
             </div>
         );

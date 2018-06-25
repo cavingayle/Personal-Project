@@ -25,7 +25,7 @@ class Stripe extends Component {
   successPayment = data => {
     console.log("Payment Successful", data.data[0].orderid);
     const orderid = data.data[0].orderid;
-    axios.post("/api/lineitem/", { orderid }).then(response => {
+    axios.post("/api/lineitem", { orderid }).then(response => {
       console.log( "response", response );
       this.setState({ lineitem: response.data })
   });

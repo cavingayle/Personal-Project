@@ -5,6 +5,7 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Login from '../Login/Login';
 // import currency from 'currency.js';
+import './Cart.css';
 
 class Cart extends Component {
   constructor() {
@@ -25,6 +26,7 @@ class Cart extends Component {
           }
         })
         this.props.getCart()
+        console.log('this.state.loggedIn', this.state.loggedIn)
       }
       
       increment = ( product ) => {
@@ -55,13 +57,13 @@ class Cart extends Component {
         console.log('this.props.cart_total', this.props.cart_total)
         // console.log(this.props.cart)
         const {total, cart_total} = this.props
-        console.log('total',total)
+        console.log('total',total, 'cart_total', cart_total)
           const cart = this.props.cart ? this.props.cart.map( ( e, i ) => {
-            return <div key={ i }>
+            return <div className= 'background' key={ i }>
             <div className="cartitem">
             <div className ="cartbody">
           
-            <img src={ e.image } alt={ e.name }/> 
+            <img className= 'cart-img img'src={ e.image } alt={ e.name }/> 
                   <p>{ e.name } </p>
                 
                   <p>Color: { e.color } </p>

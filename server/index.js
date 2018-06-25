@@ -83,7 +83,7 @@ app.post('/api/shippingDetails',paymentController.shippingDetails)
 app.get('/api/checksession',userController.checkSession)
 
 // //***************ORDER Endpoints *********************/
-app.post('/api/lineitem/', orderController.addToLineItem) 
+app.post('/api/lineitem', orderController.addToLineItem) 
 
 // //*************Cloudinary Image uploader  */
 app.get('/api/upload', productController.imageUpload);

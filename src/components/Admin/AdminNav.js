@@ -3,6 +3,7 @@ import { Menu, Dropdown, Icon } from 'antd';
 import 'antd/lib/menu/style/index.css'
 import 'antd/lib/dropdown/style/index.css'
 // import 'antd/lib/icon/style/css.js'
+import 'antd/lib/anchor/style/index.css';
 import { Link } from 'react-router-dom';
 
 export default class AdminNav extends Component {

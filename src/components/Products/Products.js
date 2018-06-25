@@ -31,7 +31,7 @@ class Products extends Component {
           const { Option, OptGroup } = Select;
           const products = this.props.products ? this.props.products.map( ( e, i ) => {
             // console.log('----------e', e);
-            console.log('----------this.props.cart', this.props.cart);
+            // console.log('----------this.props.cart', this.props.cart);
             return <div key={ i } className='item'>
             <div>
                     <h1>{ e.productname }</h1>
