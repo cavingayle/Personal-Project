@@ -42,19 +42,7 @@ class Checkout extends Component {
         // console.log('parsedData', parsedData.total);
         this.props.setCart(parsedData.cart)
         this.props.setTotal(parsedData.total);
-        // console.log(this.props.total)
-        // if(this.props.total){
-        //   this.setState({
-        //     total: this.props.total
-        //   })
-        // }else {
-        //   this.setState({
-        //     total: parsedData.total
-        //   })
-        // }
-        // this.setState(this.state);
-        // let displaydata = data.map( e => {})
-        console.log(this.props.cart.length)
+        console.log('this.props.cart', this.props.cart)
         setTimeout(() => {if(!this.props.cart.length) {
           console.log('redirect', this.props);
           return this.props.history.push('/')
@@ -83,7 +71,7 @@ class Checkout extends Component {
 
         const { total } = this.state;
         const { classes } = this.props;
-        console.log('----', this.props.cart)
+        console.log('----', this.props.cart, 'this.state.cart', this.state.cart)
         console.log('this is the state :', this.state);
         return (
             <div className='checkout_main_body'>
@@ -229,6 +217,7 @@ class Checkout extends Component {
                 onClick={() => this.shippingDetails()}
               >
                 <StripeCheckout
+                  cart={ this.props.cart }
                   tax={(total * 0.06).toFixed(2)}
                   amount={(total * 1.06 + 5).toFixed(2)}
                   zip_code={true}

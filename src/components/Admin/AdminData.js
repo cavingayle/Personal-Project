@@ -31,7 +31,7 @@ componentDidMount(){
     let newArray = this.state.orders.map(key => {
             // console.log('orderArrayOfProductObj', orderArrayOfProductObj, 'key', key, 'orderArrayOfProductObj[key].orderamount', orderArrayOfProductObj[key].orderamount,  'orderArrayOfProductObj[key].orderDate', orderArrayOfProductObj[key].orderDate, 'orderArrayOfProductObj[key].products', orderArrayOfProductObj[key].products)
             return(
-                <div className= 'data-container admin-form background'>
+                <div className= 'data-container background'>
                     <p> Order ID: { key.orderid }</p>
                     <p> Username: { key.username }</p>
                     <p> Order Date: { key.orderdate }</p>
@@ -43,10 +43,8 @@ componentDidMount(){
     })
 
     return (
-      <div>
-    
-<h1> All orders </h1>
-  { newArray }
+        <div className='data-outer-container'>
+            { newArray }
         </div>
 
       

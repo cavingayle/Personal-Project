@@ -22,7 +22,7 @@ module.exports = {
               // console.log(email)
               req.app.get('db').find_user(email).then(response =>{
                
-                console.log("response from database",response)
+                // console.log("response from database",response)
                 if(response.length){
                   // console.log("response from session",response[0].userid)
                   // console.log('userid', response[0].userid)
@@ -59,7 +59,10 @@ module.exports = {
               
             });
           });
-        })
+        }).catch(error => {
+            console.log("auth controller error", error)
+            res.status(500).send('error in auth controller')
+          });
       },
       logout: (req, res) => {
         req.session.destroy();

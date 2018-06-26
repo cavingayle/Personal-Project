@@ -3,6 +3,6 @@ FROM orders
 JOIN users
 ON orders.orderuserid = users.userid
 LEFT JOIN lineItem 
-ON lineItem.orderID=orders.orderID
+ON lineItem.orderID = orders.orderID
 JOIN products
 ON lineItem.productID = products.productID

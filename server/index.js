@@ -20,7 +20,6 @@ const app = express()
 app.use(express.static(path.join(__dirname, '../build')));
 
 // View engine setup
-app.engine( 'handlebars', exphbs());
 app.set('view evgine', 'handlebars');
 
 // Body Parser Middleware
@@ -78,9 +77,9 @@ app.get('/api/userdetails', userController.userdetailsByID)
 app.get('/api/orders', orderController.ordersByUserId)
 
 //***************Payment****************** */
-app.post('/api/payment',paymentController.paymentAPI)
-app.post('/api/shippingDetails',paymentController.shippingDetails)
-app.get('/api/checksession',userController.checkSession)
+app.post('/api/payment', paymentController.paymentAPI)
+app.post('/api/shippingDetails', paymentController.shippingDetails)
+app.get('/api/checksession', userController.checkSession)
 
 // //***************ORDER Endpoints *********************/
 app.post('/api/lineitem', orderController.addToLineItem) 

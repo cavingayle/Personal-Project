@@ -31,7 +31,8 @@ export default class Contact extends Component {
        })
    }
 
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+        e.preventDefault();
         const { name, email, text } = this.state
         axios.post('/api/sendmail', {
             name,
@@ -74,7 +75,7 @@ export default class Contact extends Component {
                             </label>
                             </div>
 
-                            <button onClick={ e => this.handleSubmit() } type="submit">Send</button>
+                            <button onClick={ (e) => this.handleSubmit(e) } type="submit">Send</button>
 
                             <div>
                             { window.location.hash === '#success' &&
