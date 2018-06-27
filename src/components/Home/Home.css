@@ -84,6 +84,7 @@ img {
 
 .home-container {
   display: flex;
+  flex-direction: column;
   align-content: center;
   align-items: center;
   justify-content: center;
@@ -132,7 +133,8 @@ img {
   width: 353px;
   height: 456px;
   margin-bottom: 25px;
-  bottom: 0;
+  /* bottom: 0; */
+  top: 400px;
   position: absolute;
   z-index: 5;
 }
@@ -209,6 +211,77 @@ img {
   top: 220px;
   right: 0;
   z-index: 5;
+}
+
+.featured-items {
+  display: flex;
+  /* position: relative; */
+}
+
+.featured-item1 {
+  width: 55%;
+  height: 725px;
+  background: #f6f5ef;
+  position: relative;
+  margin: 130px 0 0 5%;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.featured-product-img {
+  display: block;
+  max-width: 55%;
+  height: auto;
+}
+
+.collection-tag2 {
+  background: url('../../media/redpaint.png');
+  background-size: cover;
+  position: absolute;
+  bottom: auto;
+  top: 85%;
+  left: -34px;
+  padding: 0 0 50px 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  /* width: 270px; */
+  width: 35%;
+  height: 180px;
+}
+
+.collection-tag2 > span {
+  display: block;
+  color: #FFFFFF;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 10px 50px 10px 0;
+}
+
+.collection-tag2 > h2 {
+  display: block;
+  font-family: 'Silk Serif';
+  font-size: 30px;
+  color: #000000;
+  padding: 0;
+  font-weight: normal;
+  margin: 0 60px 10px 0;
+}
+
+.featured-item2 {
+  width: 40%;
+  height: 530px;
+  float: right;
+  background: #f6f5ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 /* .blueImg {

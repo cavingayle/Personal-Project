@@ -5,11 +5,14 @@ import Slide1 from '../Slides/Slide1';
 import Slide2 from '../Slides/Slide2';
 import Slide3 from '../Slides/Slide3';
 import blueImg from '../../media/blue-1219296_1280.png';
+import img from '../../media/Mountain Cuff Bracelet.jpg';
+import img2 from '../../media/Father-daughter-necklaces.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Rellax from 'rellax';
 
 
-
+// var rellax = new Rellax('.rellax')
 
 export default class Home extends Component {
     constructor() {
@@ -29,6 +32,15 @@ export default class Home extends Component {
         // easing: 'ease-in-sine',
         // delay: 100,
       });
+      // var rellax = new Rellax('.rellax')
+      // , {
+      //   speed: -2,
+      //   center: false,
+      //   wrapper: null,
+      //   round: true,
+      //   vertical: true,
+      //   horizontal: false
+      // });
     }
 
     prev = () => {
@@ -98,6 +110,19 @@ export default class Home extends Component {
                   <span> Collection </span>
                   <h2> Mother's Day </h2>
                   <Link to= 'products'><span className= 'feature-underline'> Shop Now </span></Link>
+                </div>
+                <div className= 'featured-items'>
+                  <div className= 'featured-item1'>
+                    <img className= 'featured-product-img'src={img} alt='product'/>
+                  </div>
+                  <div className= 'collection-tag2'>
+                    <span> Collection </span>
+                    <h2> Father's Day </h2>
+                    <Link to= 'products'><span className= 'feature-underline'> Shop Now </span></Link>
+                  </div>
+                  <div className= 'featured-item2'>
+                    <img className= 'featured-product-img' src={img2} alt='product2'/>
+                  </div>
                 </div>
               </div>
             </div>
