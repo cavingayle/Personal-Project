@@ -2,33 +2,34 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { arrayToArrayofObject } from '../../utils/functions';
 import '../../Styling/Admin.css';
+import { withData } from './AdminDataContainer';
 
-export default class AdminOrders extends Component {
-  constructor(){
-    super()
-        this.state={
-            orders:[]
-        }
+class AdminOrders extends Component {
+//   constructor(){
+//     super()
+//         this.state={
+//             orders:[]
+//         }
 
     
-}
-componentDidMount(){
-    axios.get('/api/allOrders').then( response => {
-        console.log("response on admin orders page",response.data)
-        this.setState({
-            orders: response.data
-        })
-      }).catch( err => { console.log( err ) })
-}
+// }
+// componentDidMount(){
+//     axios.get('/api/allOrders').then( response => {
+//         console.log("response on admin orders page",response.data)
+//         this.setState({
+//             orders: response.data
+//         })
+//       }).catch( err => { console.log( err ) })
+// }
 
   
 
   render() {
-    console.log("value from backend", this.state.orders)
-    const orderArrayOfProductObj= arrayToArrayofObject(this.state.orders)
-    console.log(orderArrayOfProductObj)  
+    // console.log("value from backend", this.state.orders)
+    // const orderArrayOfProductObj= arrayToArrayofObject(this.state.orders)
+    // console.log(orderArrayOfProductObj)  
 
-    let newArray = this.state.orders.map(key => {
+    let newArray = this.props.orders.map(key => {
             // console.log('orderArrayOfProductObj', orderArrayOfProductObj, 'key', key, 'orderArrayOfProductObj[key].orderamount', orderArrayOfProductObj[key].orderamount,  'orderArrayOfProductObj[key].orderDate', orderArrayOfProductObj[key].orderDate, 'orderArrayOfProductObj[key].products', orderArrayOfProductObj[key].products)
             return(
                 <div className= 'data-container background'>
@@ -51,3 +52,5 @@ componentDidMount(){
     );
   }
 }
+
+export default withData('/api/allOrders')(AdminOrders)
