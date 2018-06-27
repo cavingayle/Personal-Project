@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { arrayToArrayofObject } from '../../utils/functions';
+// import axios from 'axios';
+// import { arrayToArrayofObject } from '../../utils/functions';
 import '../../Styling/Admin.css';
 import { withData } from './AdminDataContainer';
 
