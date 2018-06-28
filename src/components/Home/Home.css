@@ -216,14 +216,16 @@ img {
 .featured-items {
   display: flex;
   /* position: relative; */
+  margin-bottom: 100px;
 }
 
 .featured-item1 {
   width: 55%;
   height: 725px;
+  top: 200px;
   background: #f6f5ef;
   position: relative;
-  margin: 130px 0 0 5%;
+  margin: 130px 0 130px 5%;
   float: right;
   display: flex;
   justify-content: center;
@@ -241,8 +243,8 @@ img {
   background: url('../../media/redpaint.png');
   background-size: cover;
   position: absolute;
-  bottom: auto;
-  top: 85%;
+  bottom: -700px;
+  /* top: -400px; */
   left: -34px;
   padding: 0 0 50px 0;
   display: flex;
@@ -250,8 +252,8 @@ img {
   flex-direction: column;
   align-items: center;
   /* width: 270px; */
-  width: 35%;
-  height: 180px;
+  width: 30%;
+  height: 200px;
 }
 
 .collection-tag2 > span {
@@ -276,12 +278,15 @@ img {
 .featured-item2 {
   width: 40%;
   height: 530px;
+  bottom: 600px;
+  /* top: 0; */
   float: right;
   background: #f6f5ef;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  /* margin-bottom: 130px; */
 }
 
 /* .blueImg {

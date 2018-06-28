@@ -32,7 +32,7 @@ export default class Home extends Component {
         // easing: 'ease-in-sine',
         // delay: 100,
       });
-      // var rellax = new Rellax('.rellax')
+      this.rellax = new Rellax('.rellax')
       // , {
       //   speed: -2,
       //   center: false,
@@ -112,17 +112,20 @@ export default class Home extends Component {
                   <Link to= 'products'><span className= 'feature-underline'> Shop Now </span></Link>
                 </div>
                 <div className= 'featured-items'>
-                  <div className= 'featured-item1'>
+                  <div className= 'featured-item1 rellax' data-rellax-speed="2">
                     <img className= 'featured-product-img'src={img} alt='product'/>
                   </div>
-                  <div className= 'collection-tag2'>
+                  <div className= 'collection-tag2 rellax' data-rellax-speed="4">
                     <span> Collection </span>
                     <h2> Father's Day </h2>
                     <Link to= 'products'><span className= 'feature-underline'> Shop Now </span></Link>
                   </div>
-                  <div className= 'featured-item2'>
+                  <div className= 'featured-item2 rellax' data-rellax-speed="-6">
                     <img className= 'featured-product-img' src={img2} alt='product2'/>
                   </div>
+                </div>
+                <div className='home-social-section'>
+                  <div></div>
                 </div>
               </div>
             </div>
