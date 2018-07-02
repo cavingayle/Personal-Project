@@ -78,29 +78,12 @@ export default class Home extends Component {
 
     render() {
       var settings = {
-        dots: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 3,
-      initialSlide: 0,
-      responsive: [
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+       swipeToSlide:true,
+        swipe:true,
+        arrows:false
       };
       // AOS.init()
 
@@ -153,21 +136,24 @@ export default class Home extends Component {
                     <img className= 'featured-product-img' src={img2} alt='product2'/>
                   </div>
                 </div>
-                <div className='home-social-section'>
+                {/* <div className='home-social-section'> */}
                   <Slider {...settings}>
                     <div>
-                      <img src={ insta1 } href='https://www.instagram.com/p/BknWK5MDCrG/?taken-by=aglassofharmony' alt='insta 1'/>
+                      1
+                      <a href='https://www.instagram.com/p/BknWK5MDCrG/?taken-by=aglassofharmony' target= '_blank'><img className='insta-slider' src={ insta1 } alt='insta 1'/></a>
                     </div>
                     <div>
-                      <img src={ insta2 } href='https://www.instagram.com/p/BkkvAUXD4kR/?taken-by=aglassofharmony' alt= 'insta 2'/>
+                      2
+                      <a href='https://www.instagram.com/p/BkkvAUXD4kR/?taken-by=aglassofharmony' target= '_blank'><img className='insta-slider' src={ insta2 } alt= 'insta 2'/></a>
                     </div>
                     <div>
-                      <img src={ insta3 } href='https://www.instagram.com/p/BjnwDRbjb85/?taken-by=aglassofharmony' alt= 'insta 3' />
+                      3
+                      <a href='https://www.instagram.com/p/BjnwDRbjb85/?taken-by=aglassofharmony' target= '_blank'><img className='insta-slider' src={ insta3 } alt= 'insta 3' /></a>
                     </div>
                   </Slider>
                 </div>
               </div>
-            </div>
+            // </div>
         );
     }
 }
