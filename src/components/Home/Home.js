@@ -7,9 +7,14 @@ import Slide3 from '../Slides/Slide3';
 import blueImg from '../../media/blue-1219296_1280.png';
 import img from '../../media/Mountain Cuff Bracelet.jpg';
 import img2 from '../../media/Father-daughter-necklaces.jpg';
+import insta1 from '../../media/Inspirational wire Bracelet.jpg';
+import insta2 from '../../media/Initial Heart Necklace.jpg';
+import insta3 from '../../media/OhthePlacesYou_llGo.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Rellax from 'rellax';
+import Slider, { slick } from 'react-slick';
+import $ from 'jquery';
 
 
 // var rellax = new Rellax('.rellax')
@@ -72,7 +77,31 @@ export default class Home extends Component {
      }
 
     render() {
-
+      var settings = {
+        dots: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+      };
       // AOS.init()
 
         const { slide } = this.state
@@ -115,7 +144,7 @@ export default class Home extends Component {
                   <div className= 'featured-item1 rellax' data-rellax-speed="2">
                     <img className= 'featured-product-img'src={img} alt='product'/>
                   </div>
-                  <div className= 'collection-tag2 rellax' data-rellax-speed="4">
+                  <div className= 'collection-tag2 rellax' data-rellax-speed="6">
                     <span> Collection </span>
                     <h2> Father's Day </h2>
                     <Link to= 'products'><span className= 'feature-underline'> Shop Now </span></Link>
@@ -125,7 +154,17 @@ export default class Home extends Component {
                   </div>
                 </div>
                 <div className='home-social-section'>
-                  <div></div>
+                  <Slider {...settings}>
+                    <div>
+                      <img src={ insta1 } href='https://www.instagram.com/p/BknWK5MDCrG/?taken-by=aglassofharmony' alt='insta 1'/>
+                    </div>
+                    <div>
+                      <img src={ insta2 } href='https://www.instagram.com/p/BkkvAUXD4kR/?taken-by=aglassofharmony' alt= 'insta 2'/>
+                    </div>
+                    <div>
+                      <img src={ insta3 } href='https://www.instagram.com/p/BjnwDRbjb85/?taken-by=aglassofharmony' alt= 'insta 3' />
+                    </div>
+                  </Slider>
                 </div>
               </div>
             </div>

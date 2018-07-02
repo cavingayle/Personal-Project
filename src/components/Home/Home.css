@@ -243,8 +243,8 @@ img {
   background: url('../../media/redpaint.png');
   background-size: cover;
   position: absolute;
-  bottom: -700px;
-  /* top: -400px; */
+  bottom: -1000px;
+  /* top: -200px; */
   left: -34px;
   padding: 0 0 50px 0;
   display: flex;
@@ -288,6 +288,9 @@ img {
   position: relative;
   /* margin-bottom: 130px; */
 }
+
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 /* .blueImg {
   display: flex;
