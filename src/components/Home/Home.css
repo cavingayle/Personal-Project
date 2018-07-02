@@ -289,8 +289,17 @@ img {
   /* margin-bottom: 130px; */
 }
 
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
+.slick-list {
+  /* max-height: 300px; */
+  
+}
+
+.slick-slide {
+  margin: 0 10px;
+}
+
+/* @import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css"; */
 
 /* .blueImg {
   display: flex;
