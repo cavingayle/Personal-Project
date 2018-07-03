@@ -9,11 +9,14 @@ import img from '../../media/Mountain Cuff Bracelet.jpg';
 import img2 from '../../media/Father-daughter-necklaces.jpg';
 import insta1 from '../../media/Inspirational wire Bracelet.jpg';
 import insta2 from '../../media/Initial Heart Necklace.jpg';
-import insta3 from '../../media/OhthePlacesYou_llGo.jpg';
+import insta3 from "../../media/Oh the Places You'll Go Compass Necklace.jpg";
+import insta4 from "../../media/I'd Rather Be Hunting Keychain.jpg";
+import insta5 from "../../media/Personalized Anniversary Necklace.jpg";
+import insta6 from "../../media/il_570xN.1387294845_f1le.jpg";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Rellax from 'rellax';
-import Slider, { slick } from 'react-slick';
+import Slider from 'react-slick';
 import $ from 'jquery';
 
 
@@ -46,6 +49,12 @@ export default class Home extends Component {
       //   vertical: true,
       //   horizontal: false
       // });
+      // const matchMedia = () => ({
+      //   matches: false,
+      //   addListener() {},
+      //   removeListener() {},
+      // });
+      // window.matchMedia = window.matchMedia || matchMedia;
     }
 
     prev = () => {
@@ -78,12 +87,14 @@ export default class Home extends Component {
 
     render() {
       var settings = {
-        speed: 500,
+        dots: true,
+        infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
-       swipeToSlide:true,
-        swipe:true,
-        arrows:false
+        autoplay: true,
+        speed: 1000,
+        autoplaySpeed: 2000,
+        cssEase: "linear"
       };
       // AOS.init()
 
@@ -149,6 +160,18 @@ export default class Home extends Component {
                     <div>
                       3
                       <a href='https://www.instagram.com/p/BjnwDRbjb85/?taken-by=aglassofharmony' target= '_blank'><img className='insta-slider' src={ insta3 } alt= 'insta 3' /></a>
+                    </div>
+                    <div>
+                      4
+                      <a href='https://www.instagram.com/p/BjIA-zgjmr_/?taken-by=aglassofharmony' target= '_blank'><img className='insta-slider' src={ insta4 } alt= 'insta 4' /></a>
+                    </div>
+                    <div>
+                      5
+                      <a href='https://www.instagram.com/p/BjnwDRbjb85/?taken-by=aglassofharmony' target= '_blank'><img className='insta-slider' src={ insta5 } alt= 'insta 5' /></a>
+                    </div>
+                    <div>
+                      6
+                      <a href='https://www.instagram.com/p/BjnwDRbjb85/?taken-by=aglassofharmony' target= '_blank'><img className='insta-slider' src={ insta6 } alt= 'insta 6' /></a>
                     </div>
                   </Slider>
                 </div>

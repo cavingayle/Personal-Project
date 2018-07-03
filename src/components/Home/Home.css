@@ -92,6 +92,7 @@ img {
   width: 100%;
   padding-top: 80px;
   margin: auto;
+  padding-bottom: 10px;
   /* background: yellow; */
 }
 
@@ -243,8 +244,8 @@ img {
   background: url('../../media/redpaint.png');
   background-size: cover;
   position: absolute;
-  bottom: -1000px;
-  /* top: -200px; */
+  bottom: -950px;
+  /* top: 900px; */
   left: -34px;
   padding: 0 0 50px 0;
   display: flex;
@@ -290,16 +291,17 @@ img {
 }
 
 .slick-list {
-  /* max-height: 300px; */
+  max-height: 400px;
   
 }
 
 .slick-slide {
   margin: 0 10px;
+  width: 200px !important;
 }
 
-/* @import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css"; */
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 /* .blueImg {
   display: flex;
