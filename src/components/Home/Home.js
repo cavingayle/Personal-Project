@@ -40,7 +40,9 @@ export default class Home extends Component {
         // easing: 'ease-in-sine',
         // delay: 100,
       });
-      this.rellax = new Rellax('.rellax')
+      this.rellax = new Rellax('.rellax', {
+        center: true
+      });
       // , {
       //   speed: -2,
       //   center: false,
@@ -147,8 +149,15 @@ export default class Home extends Component {
                     <img className= 'featured-product-img' src={img2} alt='product2'/>
                   </div>
                 </div>
-                {/* <div className='home-social-section'> */}
-                  <Slider {...settings}>
+                <div>
+                  <h2 className= 'social-title'> INSTAGRAM </h2>
+                  <div className='home-social-section'>
+                    <a className='photos' href='https://www.instagram.com/p/BknWK5MDCrG/?taken-by=aglassofharmony' target= '_blank'><img src={insta1} className='insta-slider'></img></a>
+                    <a className='photos' href='https://www.instagram.com/p/BknWK5MDCrG/?taken-by=aglassofharmony' target= '_blank'><img src={insta2} className='insta-slider'></img></a>
+                    <a className='photos' href='https://www.instagram.com/p/BknWK5MDCrG/?taken-by=aglassofharmony' target= '_blank'><img src={insta3} className='insta-slider'></img></a>
+                    <a className='photos' href='https://www.instagram.com/p/BknWK5MDCrG/?taken-by=aglassofharmony' target= '_blank'><img src={insta4} className='insta-slider'></img></a>
+                  </div>
+                  {/* <Slider {...settings}>
                     <div>
                       1
                       <a href='https://www.instagram.com/p/BknWK5MDCrG/?taken-by=aglassofharmony' target= '_blank'><img className='insta-slider' src={ insta1 } alt='insta 1'/></a>
@@ -173,10 +182,10 @@ export default class Home extends Component {
                       6
                       <a href='https://www.instagram.com/p/BjnwDRbjb85/?taken-by=aglassofharmony' target= '_blank'><img className='insta-slider' src={ insta6 } alt= 'insta 6' /></a>
                     </div>
-                  </Slider>
+                  </Slider> */}
                 </div>
               </div>
-            // </div>
+             </div>
         );
     }
 }
