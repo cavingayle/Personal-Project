@@ -16,27 +16,17 @@ class Products extends Component {
         axios.get( '/api/shop' )
           .then( products => {
             this.props.getProducts( products.data )
-            // console.log( '--------products', this.props.products )
           }).catch( err => { console.log( err ) })
           this.props.getCart()
       }
     
         render() {
-        //   console.log('---------products',this.props.products)
-          // console.log('---------productid', this.props.cart[0])
-          // console.log('---------products',this.props.products)
-          // console.log('---------productid', this.props.cart)
-          // console.log('---------cart.productID', this.props.cart.findIndex(e => e.id))
-          // console.log('---------this.props.cart-------', this.props.cart)
           const { Option, OptGroup } = Select;
           const products = this.props.products ? this.props.products.map( ( e, i ) => {
-            // console.log('----------e', e);
-            // console.log('----------this.props.cart', this.props.cart);
             return <div key={ i } className='item'>
             <div>
                     <h1>{ e.productname }</h1>
-                    {/* <h2> { e.productcartdesc } </h2> */}
-                    <img className='img' src ={ e.productimage } alt={e.productname}  />
+                    <img className='img' src ={ e.productimage } alt={ e.productname }  />
                     <h3>{ e.productshortdesc } </h3>
                     <Select
                     defaultValue="Select Chain Size"
@@ -48,7 +38,7 @@ class Products extends Component {
                         <Option value="20">20 inch</Option>
                         <Option value="22">22 inch</Option>
                         <Option value="24">24 inch</Option>
-                        <Option value={true}>Keychain</Option>
+                        <Option value={ true }>Keychain</Option>
                       </OptGroup>
                     </Select> 
                     <br/>
@@ -58,7 +48,6 @@ class Products extends Component {
             </div>
                    </div>
           }): 'nothing to display'
-          // { this.props.cart > 0 ? console.log( '---------productid', this.props.cart[0].productid : null) }
             return (
               <div>
                 <div className='header-img'>

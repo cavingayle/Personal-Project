@@ -31,9 +31,7 @@ export default class AdminAddProduct extends Component {
         }
 
         uploadImage = ( file ) => {
-            // console.log( 'inside uploadfile', file[0] );
             axios.get( '/api/upload').then( response => {
-            //   console.log( 'response data', response.data );
 
                       let formData = new FormData();
                         formData.append("signature", response.data.signature)
@@ -43,7 +41,6 @@ export default class AdminAddProduct extends Component {
                 
               axios.post( CLOUDINARY_UPLOAD_URL, formData ).then( response => {
                 this.setState({ productimage: response.data.secure_url });
-                // console.log( 'Image url is ', this.state.productimage );
               });
             }).catch( err => {
                 console.log( err );
@@ -110,7 +107,7 @@ export default class AdminAddProduct extends Component {
                         >
                             <Input value= { this.state.productprice } 
                                    placeholder='Price' 
-                                   onChange={e => this.setState({ productprice: e.target.value })}
+                                   onChange={ e => this.setState({ productprice: e.target.value })}
                                    />
                         </FormItem>
                         <FormItem
@@ -119,7 +116,7 @@ export default class AdminAddProduct extends Component {
                         >
                             <Input value= { this.state.productcartdesc } 
                                    placeholder='Cart Description' 
-                                   onChange={e => this.setState({ productcartdesc: e.target.value })}
+                                   onChange={ e => this.setState({ productcartdesc: e.target.value })}
                                    />
                         </FormItem>
                         <FormItem
@@ -138,7 +135,7 @@ export default class AdminAddProduct extends Component {
                             <Input 
                                    type='file'
                                    placeholder='Imgage URL' 
-                                   onChange={ (e) => this.uploadImage(e.target.files)}
+                                   onChange={ e => this.uploadImage( e.target.files ) }
                                    />
                            
                         </FormItem>
@@ -170,10 +167,10 @@ export default class AdminAddProduct extends Component {
                                    />
                         </FormItem>
                         <FormItem { ...buttonItemLayout }>
-                            <Button onClick={ () => this.createProduct()} type='primary'>Submit</Button>
+                            <Button onClick={ () => this.createProduct() } type='primary'>Submit</Button>
                         </FormItem>
                     </Form>
-                    <img src={this.state.productimage} alt='test'/>
+                    <img src={ this.state.productimage } alt='test'/>
       </div>
      </div>
     );

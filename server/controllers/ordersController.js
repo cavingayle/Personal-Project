@@ -1,13 +1,9 @@
 module.exports = {
 
     addToLineItem: ( req, res ) => {
-        // console.log("inside line item endpoint")
         const{ orderid, cart }= req.body
-        // const{ cart } = req.session.user
-    console.log("inside line items,", cart)
         cart.forEach( e => {
-        req.app.get( 'db' ).create_line_items( orderid,e.id,e.qty ).then( (res) => {
-            console.log("Added to line item", res);
+        req.app.get( 'db' ).create_line_items( orderid,e.id,e.qty ).then( ( res ) => {
         }).catch( error=>console.log( error ) )
       })   
     },
@@ -16,7 +12,7 @@ module.exports = {
        const dbInstance=req.app.get( 'db' );
     //    console.log( "inside admin get orders" )
        dbInstance.admin_get_orders().then( orders=>res.status( 200 ).send( orders ))
-       .catch(error=>console.log( error ) )
+       .catch( error=>console.log( error ) )
     },
 
     ordersByUserId:( req, res, next )=>{

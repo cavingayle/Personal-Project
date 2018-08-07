@@ -17,10 +17,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Rellax from 'rellax';
 import Slider from 'react-slick';
-import $ from 'jquery';
 
-
-// var rellax = new Rellax('.rellax')
 
 export default class Home extends Component {
     constructor() {
@@ -43,20 +40,6 @@ export default class Home extends Component {
       this.rellax = new Rellax('.rellax', {
         center: true
       });
-      // , {
-      //   speed: -2,
-      //   center: false,
-      //   wrapper: null,
-      //   round: true,
-      //   vertical: true,
-      //   horizontal: false
-      // });
-      // const matchMedia = () => ({
-      //   matches: false,
-      //   addListener() {},
-      //   removeListener() {},
-      // });
-      // window.matchMedia = window.matchMedia || matchMedia;
     }
 
     prev = () => {
@@ -98,7 +81,6 @@ export default class Home extends Component {
         autoplaySpeed: 2000,
         cssEase: "linear"
       };
-      // AOS.init()
 
         const { slide } = this.state
         return (
@@ -138,7 +120,7 @@ export default class Home extends Component {
                 </div>
                 <div className= 'featured-items'>
                   <div className= 'featured-item1 rellax' data-rellax-speed="2">
-                    <img className= 'featured-product-img'src={img} alt='product'/>
+                    <img className= 'featured-product-img'src={ img } alt='product'/>
                   </div>
                   <div className= 'collection-tag2 rellax' data-rellax-speed="6">
                     <span> Collection </span>
@@ -146,7 +128,7 @@ export default class Home extends Component {
                     <Link to= 'products'><span className= 'feature-underline'> Shop Now </span></Link>
                   </div>
                   <div className= 'featured-item2 rellax' data-rellax-speed="-6">
-                    <img className= 'featured-product-img' src={img2} alt='product2'/>
+                    <img className= 'featured-product-img' src={ img2 } alt='product2'/>
                   </div>
                 </div>
                 <div>

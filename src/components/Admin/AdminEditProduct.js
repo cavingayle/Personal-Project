@@ -20,22 +20,14 @@ class AdminEditProduct extends Component {
         axios.get( '/api/shop' )
           .then( products => {
             this.props.getProducts( products.data )
-            // console.log( '--------products', products.data )
             this.setState({
               loading: true
             })
           }).catch( err => { console.log( err ) })
       }
 
-      // deleteProduct( id ) {
-      //   axios.delete( `/api/shop/${ id }` ).then( res => {
-      //       this.props.getProducts( res.data )
-      //   }).catch( err => { console.log( err ) })
-      // }
-
     render() {
           const products = this.props.products ? this.props.products.map( ( e, i ) => {
-            // console.log('----------e', e);
             return <div key={ i } className='item'>
             <div>
           {/* create variable to hold the value of the updated text */}

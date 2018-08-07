@@ -11,7 +11,6 @@ export const withData = url => BasedComponent => class extends Component {
 
     componentDidMount(){
         axios.get(url).then( response => {
-            console.log("response on admin orders page",response.data)
             this.setState({
                 data: response.data
             })
@@ -23,7 +22,7 @@ export const withData = url => BasedComponent => class extends Component {
         if (this.state.data.length) {
             return(
                 <div>
-                    <BasedComponent users={this.state.data} orders={this.state.data} products={this.state.data}/>
+                    <BasedComponent users={ this.state.data } orders={ this.state.data } products={ this.state.data }/>
                 </div>
             )
         } else {

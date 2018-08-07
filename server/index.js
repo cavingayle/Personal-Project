@@ -16,7 +16,7 @@ const mailController = require( './controllers/mailController');
 
 const app = express()
 
-// Hostin path to build folder
+// Hosting path to build folder
 app.use(express.static(path.join(__dirname, '../build')));
 
 // View engine setup
@@ -58,7 +58,6 @@ app.put('/api/shop/:id', productController.editProduct)
 app.post('/api/createProduct', productController.createProduct)
 // app.get('/api/itemOptions', productController.itemOptions) 
 // app.get('/api/optionByProductID/:id', productController.optionByProductID)
-// app.get('/api/test', productController.getNecklaceSizes)
 
 //*************USER login/logout Endpoints**************/
 app.get('/auth/callback', authController.auth) 

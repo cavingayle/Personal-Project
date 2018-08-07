@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { Redirect } from "react-router-dom";
-import OrderConfirmation from "./OrderConfirmation";
 import { connect } from "react-redux";
 import axios from "axios";
 
@@ -15,7 +14,6 @@ class Stripe extends Component {
 
     this.state = {
       orderComplete: false,
-      // orderid: 11,
       orderNumber: "",
       order: [],
       lineitem: []
@@ -23,36 +21,30 @@ class Stripe extends Component {
   }
 
   successPayment = data => {
-    console.log("Payment Successful", data.data[0].orderid);
-    console.log("data", data, 'this.props.cart', this.props.cart)
     const orderid = data.data[0].orderid;
-    axios.post("/api/lineitem", { orderid, cart: this.props.cart }).then(response => {
-      console.log( "response", response );
+    axios.post( "/api/lineitem", { orderid, cart: this.props.cart } ).then(response => {
       this.setState({ lineitem: response.data })
   });
     
      this.setState({ orderNumber: data.data[0].orderid, orderComplete: true });
-    console.log("values in state", this.state.orderNumber);
-    console.log('session storage after clear', sessionStorage)
     sessionStorage.clear();
-    console.log('session storage after clear', sessionStorage)
   };
 
-  errorPayment = data => { alert("Payment Error");
+  errorPayment = data => { alert( "Payment Error" );
 };
 
-  onToken = (amount, tax) => token =>
-    axios.post("/api/payment", {
+  onToken = ( amount, tax ) => token =>
+    axios.post( "/api/payment", {
         source: token.id,
         currency: CURRENCY,
         email: token.email,
         tax: tax,
-        amount: Math.ceil(fromUSDToCent(amount))
-      }).then(this.successPayment).catch(this.errorPayment);
+        amount: Math.ceil(fromUSDToCent( amount ))
+      }).then( this.successPayment ).catch( this.errorPayment );
 
   render() {
-    if (this.state.orderComplete) {
-      return <Redirect to={`/orderconfirmation/${this.state.orderNumber}`} />;
+    if ( this.state.orderComplete ) {
+      return <Redirect to={ `/orderconfirmation/${ this.state.orderNumber }` } />;
     }
 
     const { tax, amount } = this.props;
@@ -61,10 +53,10 @@ class Stripe extends Component {
         <StripeCheckout
           name="A Glass of Harmony"
           tax
-          amount={fromUSDToCent(amount)}
-          token={this.onToken(amount, tax)}
-          currency={CURRENCY}
-          stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE}
+          amount={ fromUSDToCent( amount ) }
+          token={ this.onToken( amount, tax ) }
+          currency={ CURRENCY }
+          stripeKey={ process.env.REACT_APP_STRIPE_PUBLISHABLE }
         />
       </div>
     );
@@ -77,4 +69,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Stripe);
+export default connect( mapStateToProps )( Stripe );

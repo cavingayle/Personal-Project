@@ -7,14 +7,13 @@ import { getProducts, actions, setCart, setTotal } from '../../ducks/reducer';
 import axios from 'axios';
 import Cart from '../Cart/Cart';
 import StripeCheckout from './StripeCheckout';
-import Login from '../Login/Login';
 import '../../Styling/Checkout.css';
 
 class Checkout extends Component {
     constructor( props ) {
         super( props );
-        let data = sessionStorage.getItem('sessionItem')
-        let parsedData = JSON.parse(data);
+        let data = sessionStorage.getItem( 'sessionItem' )
+        let parsedData = JSON.parse( data );
         this.state = {
             email: '',
             address: '',
@@ -31,29 +30,18 @@ class Checkout extends Component {
     }
 
     componentDidMount = () => {
-        // console.log('this.props.total', this.props.total)
-        // console.log('this.props.cart', this.props.cart)
-        let data = sessionStorage.getItem('sessionItem')
-        // console.log('sessionStorage cart', JSON.parse(data))
-        console.log('this.props.total', this.props.total )
-        // this.props.getCart()
-        const parsedData = JSON.parse(data);
-        // console.log('parsedData.cart', parsedData.cart)
-        // console.log('parsedData', parsedData.total);
-        this.props.setCart(parsedData.cart)
-        this.props.setTotal(parsedData.total);
-        console.log('this.props.cart', this.props.cart)
-        setTimeout(() => {if(!this.props.cart.length) {
-          console.log('redirect', this.props);
-          return this.props.history.push('/')
-        }}, 1000)
+        let data = sessionStorage.getItem( 'sessionItem' )
+        const parsedData = JSON.parse( data );
+        this.props.setCart( parsedData.cart )
+        this.props.setTotal( parsedData.total );
+        setTimeout(() => { if( !this.props.cart.length ) {
+          return this.props.history.push( '/' )
+        }}, 1000 )
     }
 
     shippingDetails() {
-      // console.log('state values', this.state);
-      // console.log('props value', this.props);
       const { email, address, zip_code, state, city, phone } = this.state;
-      axios.post('/api/shippingDetails', {
+      axios.post( '/api/shippingDetails', {
           email,
           address,
           zip_code,
@@ -63,19 +51,14 @@ class Checkout extends Component {
         })
         .then(res => {
           console.log('Value from express ' + JSON.stringify(res.data));
-          
         });
     }
 
     render() {
 
         const { total } = this.state;
-        const { classes } = this.props;
-        console.log('----', this.props.cart, 'this.state.cart', this.state.cart)
-        console.log('this is the state :', this.state);
         return (
             <div className='checkout_main_body'>
-      {/* <UserInfo /> */}
         <div className='checkout_body_form '>
           <div className='checkout_summary'>
             <h3 className= 'checkout-title'> Shipping Details </h3>
@@ -84,26 +67,25 @@ class Checkout extends Component {
                 required
                 label='E-mail address'
                 margin='normal'
-                value={this.state.email}
-                onChange={e => {
-                  this.setState({ email: e.target.value });
-                  console.log('insidecheckout', e.target.value);
+                value={ this.state.email }
+                onChange={ e => {
+                  this.setState( { email: e.target.value } );
                 }}
               />
               <br />
               <TextField
                 required
                 label='Phone number'
-                value={this.state.phone}
-                onChange={e => this.setState({ phone: e.target.value })}
+                value={ this.state.phone }
+                onChange={ e => this.setState({ phone: e.target.value })}
                 margin='normal'
               />
               <br />
               <TextField
                 required
                 label='Enter your Address'
-                value={this.state.address}
-                onChange={e => this.setState({ address: e.target.value })}
+                value={ this.state.address }
+                onChange={ e => this.setState({ address: e.target.value })}
                 margin='normal'
               />
               <br />
@@ -111,24 +93,24 @@ class Checkout extends Component {
               <TextField
                 required
                 label='City'
-                value={this.state.city}
-                onChange={e => this.setState({ city: e.target.value })}
+                value={ this.state.city }
+                onChange={ e => this.setState({ city: e.target.value })}
                 margin='normal'
               />
               <br />
               <TextField
                 required
                 label='Zip Code'
-                value={this.state.zip_code}
-                onChange={e => this.setState({ zip_code: e.target.value })}
+                value={ this.state.zip_code }
+                onChange={ e => this.setState({ zip_code: e.target.value })}
                 margin='normal'
               />
               <br />
               <br />
               <div className='checkout_third_wrapper'>
                 <select
-                  value={this.state.state}
-                  onChange={e => this.setState({ state: e.target.value })}
+                  value={ this.state.state }
+                  onChange={ e => this.setState({ state: e.target.value })}
                 >
                   <option value='State'>State</option>
                   <option value='AL'>Alabama</option>
@@ -188,40 +170,38 @@ class Checkout extends Component {
           </div>
           <br />
         </div>
-                {/* { cart } */}
         <div className='checkout_body_form'>
           <div className='checkout_summary'>
             <h3 className= 'checkout-title'> Cart Summary </h3>
             <div className='checkout_box'>
-              <Cart total={this.state.total} />
+              <Cart total={ this.state.total } />
               <div>
                 <div>
-                  <span>Shipping(Flat Rate):</span>$5.00
+                  <span>Shipping( Flat Rate ):</span>$5.00
                 </div>
               </div>
               <div>
-                {/* <span>Tax:</span> */}
                 <div>
-                  <span>Tax:</span> ${(total * 0.06).toFixed(2)}
+                  <span>Tax:</span> ${(  total * 0.06 ).toFixed( 2 ) }
                 </div>
               </div>
               <div className='minicart_ordersubtotals'>
                 <div>Order Total:</div>
-                <div>${(total * 1.06 + 5).toFixed(2)} </div>
+                <div>${(  total * 1.06 + 5 ).toFixed( 2 ) } </div>
               </div>
             </div>
 
             <div>
               <div
                 className='checkout_button_tocart'
-                onClick={() => this.shippingDetails()}
+                onClick={ () => this.shippingDetails() }
               >
                 <StripeCheckout
                   cart={ this.props.cart }
-                  tax={(total * 0.06).toFixed(2)}
-                  amount={(total * 1.06 + 5).toFixed(2)}
-                  zip_code={true}
-                  token={this.onToken}
+                  tax={ ( total * 0.06 ).toFixed( 2 ) }
+                  amount={ ( total * 1.06 + 5 ).toFixed( 2 ) }
+                  zip_code={ true }
+                  token={ this.onToken }
                 />
               </div>
             </div>
@@ -245,4 +225,5 @@ const mapDispatchToProps = {
     setCart,
     setTotal
     };
+    
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

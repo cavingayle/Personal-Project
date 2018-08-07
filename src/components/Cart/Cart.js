@@ -44,26 +44,13 @@ class Cart extends Component {
         this.props.getCart()
       }
 
-      componentWillUnmount = () => {
-        console.log("unmounted")
-        // this.setState(this.props.state)
-      }
-    
-    
       render() {
-        console.log('loggedIn', this.state.loggedIn)
-        // console.log(window.location.pathname)
-        console.log('this.props.total', this.props.total);
-        console.log('this.props.cart_total', this.props.cart_total)
-        // console.log(this.props.cart)
         const {total, cart_total} = this.props
-        console.log('total',total, 'cart_total', cart_total)
           const cart = this.props.cart ? this.props.cart.map( ( e, i ) => {
             return <div className= 'background' key={ i }>
             <div className="cartitem">
             <div className ="cartbody">
-          
-            <img className= 'cart-img img'src={ e.image } alt={ e.name }/> 
+              <img className= 'cart-img img'src={ e.image } alt={ e.name }/> 
                   <p>{ e.name } </p>
                 
                   <p>Color: { e.color } </p>
@@ -94,7 +81,6 @@ class Cart extends Component {
     
                     <br />
                      
-                    {/* { window.location.pathname==='/checkout' ? null :  <Link to="/checkout">     <Button fullWidth={true} variant="raised" color="secondary"> Check Out </Button></Link> } */}
                     {!this.state.loggedIn && <Button onClick={()=> Login(this.props.cart, this.props.cart_total) }fullWidth={true} variant="raised" color="secondary"> Check Out </Button>}
                     </div>
             )

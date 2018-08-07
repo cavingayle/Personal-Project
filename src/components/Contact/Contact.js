@@ -57,25 +57,25 @@ export default class Contact extends Component {
                             <div className="form-field">
                             <label htmlFor="name">
                                 <div className="label-content">Name:</div>
-                                <input onChange={ event => this.nameHandler(event.target.value)} type="text" name="name" required />
+                                <input onChange={ event => this.nameHandler( event.target.value )} type="text" name="name" required />
                             </label>
                             </div>
 
                             <div className="form-field">
                             <label htmlFor="email">
                                 <div className="label-content">Email:</div>
-                                <input onChange={ event => this.emailHandler(event.target.value)} type="email" name="email" required />
+                                <input onChange={ event => this.emailHandler( event.target.value )} type="email" name="email" required />
                             </label>
                             </div>
 
                             <div className="form-field">
                             <label htmlFor="message">
                                 <div className="label-content">Message:</div>
-                                <textarea onChange={ event => this.messageHandler(event.target.value)} className="stretch" name="message" rows="5" required />
+                                <textarea onChange={ event => this.messageHandler( event.target.value )} className="stretch" name="message" rows="5" required />
                             </label>
                             </div>
 
-                            <button onClick={ (e) => this.handleSubmit(e) } type="submit">Send</button>
+                            <button onClick={ ( e ) => this.handleSubmit( e ) } type="submit">Send</button>
 
                             <div>
                             { window.location.hash === '#success' &&

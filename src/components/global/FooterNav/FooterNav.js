@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const FooterNav = () => {
     return (
         <div className="footer">
-                {/* <h2 className="footer-title"> Customer Care </h2>  */}
             <div> 
                 <br/>
                 <ul>

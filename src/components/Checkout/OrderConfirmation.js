@@ -7,18 +7,12 @@ import '../../Styling/OrderConfirmation.css';
 
 
 class OrderConfirmation extends Component {
-  constructor() {
-    super();
-
-    // this.props.clearCart()
-  }
 
   componentDidMount = () => {
     this.props.clearCart();
   }
 
   render() {
-    console.log('order confirmation - this.props', this.props)
     return (
       <div className="confirmation-body">
   
@@ -28,7 +22,7 @@ class OrderConfirmation extends Component {
     
         <h1 > Thank you for your order!</h1>
         <br/>
-        <h3> Your order number is: {this.props.match.params.orderNumber} </h3>
+        <h3> Your order number is: { this.props.match.params.orderNumber } </h3>
         
           <div className= 'continue-btn'>
           <Link to="/">

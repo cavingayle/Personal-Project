@@ -2,11 +2,6 @@ import axios from 'axios';
 
 const INITIAL_STATE = {
     cart: [],
-    // loading: false,
-    // loaded: false,
-    // error: null,
-    // empty: true,
-    // newQuantity: false
     products: [],
     product: [],
     categories: [],
@@ -41,13 +36,10 @@ const CATEGORIES = 'CATEGORIES';
 export const actions = {
 
     getCart: () => {
-        console.log('hit')
         return( dispatch, getState ) => {
-            // console.log([...getState().cart])
             if(getState().cart[0]){
                 let cart = [ ...getState().cart ]
                 let total = cart.reduce( ( a, b ) => a + b.price * b.qty, 0 )
-                console.log('reducer total', total)
              
             return(
                 axios.get( '/api/user-data' ).then( res => {
@@ -61,17 +53,13 @@ export const actions = {
     },
 
     editProduct: ( id, key, val ) => {
-        console.log(id)
         return ( dispatch, getState ) => {
             let products = [ ...getState().products ]
-            console.log('products', products)
             let index = products.findIndex( e => {
                 return e.productid === id
             })
-            console.log(index)
             products[index][key] = val;
             
-
                 // make database call to update the product property val & key
                 axios.put(`/api/shop/${ id }`, products[index] )
                     .then( () => {
@@ -104,18 +92,13 @@ export const actions = {
     addToCart: ( product ) => {
         return ( dispatch, getState ) => {
           let cart = [ ...getState().cart ]
-          
-        //   console.log(cart)
           let index = cart.findIndex( e => e.id === product.id )
-        //   console.log('the index value is', index)
           if( index !== -1 ){
             cart[index].qty+=1
             cart[index].total = cart[index].qty*cart[index].price
           } else {
             cart[cart.length] = product
           }
-          console.log('hit add to cart',cart)
-       
           axios.post( '/api/cartToSession', cart ).then( ()=> {
             return dispatch({
               type: ADD_TO_CART,
@@ -127,7 +110,7 @@ export const actions = {
 
 
     removeFromCart: ( product ) => {
-        return (dispatch, getState ) => {
+        return ( dispatch, getState ) => {
         let cart = [ ...getState().cart ]
         let index = cart.findIndex( e => e.id === product )
         cart.splice( index, 1 )
@@ -147,7 +130,7 @@ export const actions = {
             cart[index].qty += 1
             cart[index].total = cart[index].qty*cart[index].price
 
-            axios.post('/api/cartToSession', cart ).then( () => {
+            axios.post( '/api/cartToSession', cart ).then( () => {
                 return dispatch ({
                     type: INCREMENT_QTY,
                     payload: cart
@@ -159,11 +142,11 @@ export const actions = {
     decrementProduct: ( product ) => {
         return ( dispatch, getState ) => {
           let cart = [ ...getState().cart ]
-          let index = cart.findIndex(  e => e.id === product )
+          let index = cart.findIndex( e => e.id === product )
             cart[index].qty -=1
             cart[index].total = cart[index].qty*cart[index].price
     
-          axios.post('/api/cartToSession', cart ).then( ()=> {
+          axios.post( '/api/cartToSession', cart ).then( ()=> {
             return dispatch({
               type: DECREMENT_QTY,
               payload: cart
@@ -249,7 +232,6 @@ export function getCategories( category ) {
 }
 
 export function getUser( user ) {
-    console.log('reducer - user', user)
     return {
         type: GET_USER,
         payload: user
@@ -264,7 +246,6 @@ export function setCart( cart ) {
 }
 
 export function setTotal( total ) {
-    console.log('reducer total', total)
     return {
         type: SET_TOTAL,
         payload: total
